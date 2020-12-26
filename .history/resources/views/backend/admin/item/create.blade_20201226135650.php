@@ -234,7 +234,9 @@ label{display: block;padding: 20px 0 5px 0;}
                                 @enderror
                             </div>
 
-                            <div class="col-md-4">
+                            <div class="col-md-4" style="
+    display: none;
+">
                                 <label for="state_id" class="text-black">{{ __('backend.state.state') }}</label>
                                 <select id="select_state_id" class="custom-select @error('state_id') is-invalid @enderror" name="state_id[]" >
                                     <option selected>{{ __('backend.item.select-state') }}</option>
@@ -249,7 +251,9 @@ label{display: block;padding: 20px 0 5px 0;}
                                 @enderror
                             </div>
 
-                            <div class="col-md-4" >
+                            <div class="col-md-4" style="
+    display: none;
+">
                                 <label for="city_id" class="text-black">{{ __('backend.city.city') }}</label>
                                 <select id="select_city_id" class="custom-select @error('city_id') is-invalid @enderror" name="city_id[]" >
                                     <option selected>{{ __('backend.item.select-city') }}</option>
@@ -416,41 +420,15 @@ label{display: block;padding: 20px 0 5px 0;}
 
                         </div>
                         <!-- End web & social media -->
-                    <div class="col-md-12">
-                                <label for="item_address" class="text-black">مناطق العمل</label>
-                                	
+                        <div class="row">
 
-    <select multiple class="form-control" id="sel2" name="a1[]">
-           @foreach(DB::table('states')->orderBy('id','desc')->get() as $item_reference_point)
-             <option value='{{$item_reference_point->id}}'>{{$item_reference_point->state_name}}</option>
-            @endforeach
-      </select>
-                               <span>يمكنك اختيار مناطق العمل</span>
-                                @error('item_address')
-                                <span class="invalid-tooltip">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                                                   
 
-                            </div>
-                              <div class="col-md-12">
-                                <label for="item_address" class="text-black">مدن العمل </label>
-
-    <select multiple class="form-control" id="sel2" name="a2[]">
-         @foreach(DB::table('cities')->orderBy('id','desc')->get() as $item_reference_point)
-             <option value='{{$item_reference_point->id}}'>{{$item_reference_point->city_name}}</option>
-            @endforeach
-      </select>                                		<span>يمكنك أختيار مدن العمل</span>
-                                @error('item_address')
-                                <span class="invalid-tooltip">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                             <br>
-                            <hr>
-                            <br>
+                            @include('backend.user.item.Area')
+    
+                        </div>
+                        <hr>
+    
+                        <a class="btn btn-success add" style="color: white;"><i class="fas fa-plus-square"></i> اضافة مدن ومحافظات عمل</a>
                         <!-- Start custom field section -->
                         <div class="form-row mb-3">
                             <div class="col-md-12">
@@ -741,6 +719,84 @@ label{display: block;padding: 20px 0 5px 0;}
              * End state, city selector
              */
 
+                  /**
+             * Start state, city selector
+             */
+
+             $(document).on('change','.select_state_id_',function (e) {
+
+                $('.select_city_id_').html('<option selected>Loading, please wait...</option>');
+
+                if(this.value > 0)
+                {
+                    var ajax_url = '/ajax/cities/' + this.value;
+
+                    $.ajaxSetup({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        }
+                    });
+                    jQuery.ajax({
+                        url: ajax_url,
+                        method: 'get',
+                        data: {
+                        },
+                        success: function(result){
+                            console.log(result);
+                            $('.select_city_id_').html('<option selected>Select city</option>');
+                            $.each(JSON.parse(result), function(key, value) {
+                                var city_id = value.id;
+                                var city_name = value.city_name;
+                                $('.select_city_id_').append('<option value="'+ city_id +'">' + city_name + '</option>');
+                            });
+                    }});
+                }
+
+            });
+            /**
+             * End state, city selector
+             */
+
+
+                  /**
+             * Start state, city selector
+             */
+
+             $(document).on('change','.select_state_id_',function (e) {
+               var id= ".select_city_id_"+$(this).attr('id');
+            
+
+                $(id).html('<option selected>Loading, please wait...</option>');
+
+                if(this.value > 0)
+                {
+                    var ajax_url = '/ajax/cities/' + this.value;
+
+                    $.ajaxSetup({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        }
+                    });
+                    jQuery.ajax({
+                        url: ajax_url,
+                        method: 'get',
+                        data: {
+                        },
+                        success: function(result){
+                            console.log(result);
+                            $(id).html('<option selected>Select city</option>');
+                            $.each(JSON.parse(result), function(key, value) {
+                                var city_id = value.id;
+                                var city_name = value.city_name;
+                                $(id).append('<option value="'+ city_id +'">' + city_name + '</option>');
+                            });
+                    }});
+                }
+
+            });
+            /**
+             * End state, city selector
+             */
             /**
              * Start image gallery uplaod
              */
@@ -1275,4 +1331,44 @@ label{display: block;padding: 20px 0 5px 0;}
 })(jQuery);
 
 </script>
+
+
+<script>
+    var c=0;
+    $(document).on('click','.add',function (e) {
+        c++;
+       // e.preventDefault();
+       
+         $("#add").append("<div class=\"col-md-3\">\n" +
+            "    <label for=\"state_id\" for=\"state_id\" class=\"text-black\">{{ __('backend.state.state') }}</label>\n" +
+            "    <select id="+c+" class=\" select_state_id_ custom-select @error('state_id') is-invalid @enderror\" name=\"a1[]\">\n" +
+            "        <option selected>{{ __('backend.item.select-state') }}</option>\n" +
+            "        @foreach($all_states as $key => $state)\n" +
+            "        <option value=\"{{ $state->id }}\" {{ $state->id == old('state_id') ? 'selected' : '' }}>\n" +
+            "            {{ $state->state_name }}</option>\n" +
+            "        @endforeach\n" +
+            "    </select>\n" +
+            "    @error('state_id')\n" +
+            "    <span class=\"invalid-tooltip\">\n" +
+            "        <strong>{{ $message }}</strong>\n" +
+            "    </span>\n" +
+            "    @enderror\n" +
+            "</div>\n" +
+            "<div class=\"col-md-3\">\n" +
+            "    <label for=\"city_id\" class=\"text-black\">{{ __('backend.city.city') }}</label>\n" +
+            "    <select id=\"select_city_id_\" class=\" select_city_id_"+c+" custom-select @error('city_id') is-invalid @enderror\" name=\"a2[]\">\n" +
+            "        <option selected>{{ __('backend.item.select-city') }}</option>\n" +
+            "    </select>\n" +
+            "    @error('city_id')\n" +
+            "    <span class=\"invalid-tooltip\">\n" +
+            "        <strong>{{ $message }}</strong>\n" +
+            "    </span>\n" +
+            "    @enderror\n" +
+            "</div>");
+            return false;
+     });
+
+</script>
+
+
 @endsection

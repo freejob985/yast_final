@@ -959,7 +959,7 @@
                         },
                         success: function(result){
                             console.log(result);
-                            $('.select_city_id_').html('<option selected>اختر مدينة</option>');
+                            $('.select_city_id_').html('<option selected>Select city</option>');
                             $.each(JSON.parse(result), function(key, value) {
                                 var city_id = value.id;
                                 var city_name = value.city_name;
@@ -1000,7 +1000,7 @@
                         },
                         success: function(result){
                             console.log(result);
-                            $(id).html('<option selected>اختر مدينة</option>');
+                            $(id).html('<option selected>Select city</option>');
                             $.each(JSON.parse(result), function(key, value) {
                                 var city_id = value.id;
                                 var city_name = value.city_name;

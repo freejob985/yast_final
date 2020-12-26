@@ -1,0 +1,42 @@
+<?php 
+return array (
+  'seo' => 
+  array (
+    'edit-login' => 'Панель инструментов - Редактировать логин - :site_name',
+    'index-login' => 'Dashboard - Управление социальным входом - :site_name',
+  ),
+  'manage-login' => 'Управление социальным входом',
+  'manage-login-desc' => 'Эта страница позволяет управлять социальным входом на сайт.',
+  'login-provider' => 'поставщик',
+  'login-status' => 'Положение дел',
+  'update-login-success' => 'Настройки входа успешно обновлены',
+  'login-client-id' => 'ID клиента',
+  'login-client-secret' => 'Секрет клиента',
+  'login-enabled' => 'Включено',
+  'login-disabled' => 'Отключено',
+  'edit-login' => 'Изменить настройки входа в систему',
+  'edit-login-desc' => 'Эта страница позволяет вам редактировать определенные настройки входа в систему.',
+  'update-login' => 'Обновить настройки',
+  'social-provider' => 'Социальный провайдер',
+  'social-provider-id' => 'МНЕ БЫ',
+  'frontend' => 
+  array (
+    'sign-in-facebook' => 'Авторизоваться с помощью Фэйсбука',
+    'sign-in-google' => 'Войти через Google',
+    'sign-in-twitter' => 'Войдите через Twitter',
+    'sign-in-linkedin' => 'Войти через LinkedIn',
+    'sign-in-github' => 'Войти через GitHub',
+    'error-facebook-disabled' => 'Facebook вход отключен',
+    'error-facebook-callback' => 'Мы получили ошибку при входе в Facebook, пожалуйста, войдите другими способами.',
+    'error-google-disabled' => 'Вход в Google отключен',
+    'error-google-callback' => 'Мы получили ошибку при входе в Google, войдите в систему другими способами.',
+    'error-twitter-disabled' => 'Твиттер отключен',
+    'error-twitter-callback' => 'Мы получили ошибку при входе в Twitter, пожалуйста, войдите другими способами.',
+    'error-linkedin-disabled' => 'Вход в LinkedIn отключен',
+    'error-linkedin-callback' => 'Мы получили ошибку при входе в LinkedIn, пожалуйста, войдите другими способами.',
+    'error-github-disabled' => 'GitHub логин отключен',
+    'error-github-callback' => 'Мы получили ошибку при входе в GitHub, пожалуйста, войдите другими способами.',
+    'or' => 'ИЛИ',
+    'sign-in-with' => 'Войдите в свои аккаунты в социальных сетях',
+  ),
+);

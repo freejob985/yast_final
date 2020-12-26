@@ -1,0 +1,42 @@
+<?php 
+return array (
+  'seo' => 
+  array (
+    'edit-login' => 'Panel de control - Editar inicio de sesión - :site_name',
+    'index-login' => 'Panel de control - Administrar inicio de sesión social - :site_name',
+  ),
+  'manage-login' => 'Administrar inicio de sesión social',
+  'manage-login-desc' => 'Esta página le permite administrar el inicio de sesión social del sitio web.',
+  'login-provider' => 'Proveedor',
+  'login-status' => 'Estado',
+  'update-login-success' => 'Configuración de inicio de sesión actualizada correctamente',
+  'login-client-id' => 'Identificación del cliente',
+  'login-client-secret' => 'Secreto del cliente',
+  'login-enabled' => 'Habilitado',
+  'login-disabled' => 'Discapacitado',
+  'edit-login' => 'Editar configuración de inicio de sesión social',
+  'edit-login-desc' => 'Esta página le permite editar una configuración particular de inicio de sesión social.',
+  'update-login' => 'Ajuste de actualización',
+  'social-provider' => 'Proveedor social',
+  'social-provider-id' => 'CARNÉ DE IDENTIDAD',
+  'frontend' => 
+  array (
+    'sign-in-facebook' => 'Iniciar sesión usando Facebook',
+    'sign-in-google' => 'Inicia sesión con Google',
+    'sign-in-twitter' => 'Registrate con Twitter',
+    'sign-in-linkedin' => 'Inicia sesión con LinkedIn',
+    'sign-in-github' => 'Inicia sesión con GitHub',
+    'error-facebook-disabled' => 'Inicio de sesión en Facebook deshabilitado',
+    'error-facebook-callback' => 'Recibimos un error con el inicio de sesión de Facebook, inicie sesión de otras maneras.',
+    'error-google-disabled' => 'Inicio de sesión de Google deshabilitado',
+    'error-google-callback' => 'Recibimos un error con el inicio de sesión de Google, inicie sesión de otras maneras.',
+    'error-twitter-disabled' => 'Inicio de sesión en Twitter deshabilitado',
+    'error-twitter-callback' => 'Recibimos un error con el inicio de sesión de Twitter, inicie sesión de otras maneras.',
+    'error-linkedin-disabled' => 'Inicio de sesión en LinkedIn deshabilitado',
+    'error-linkedin-callback' => 'Recibimos un error con el inicio de sesión de LinkedIn, inicie sesión de otras maneras.',
+    'error-github-disabled' => 'Inicio de sesión de GitHub deshabilitado',
+    'error-github-callback' => 'Recibimos un error con el inicio de sesión de GitHub, inicie sesión de otras maneras.',
+    'or' => 'O',
+    'sign-in-with' => 'Inicia sesión con tus cuentas de redes sociales',
+  ),
+);

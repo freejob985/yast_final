@@ -1,0 +1,42 @@
+<?php 
+return array (
+  'seo' => 
+  array (
+    'edit-login' => 'Dashboard - Login bewerken - :site_name',
+    'index-login' => 'Dashboard - Beheer sociale login - :site_name',
+  ),
+  'manage-login' => 'Beheer sociale login',
+  'manage-login-desc' => 'Op deze pagina kunt u de sociale login van de website beheren.',
+  'login-provider' => 'Aanbieder',
+  'login-status' => 'Toestand',
+  'update-login-success' => 'Aanmeldingsinstelling succesvol bijgewerkt',
+  'login-client-id' => 'klant identificatie',
+  'login-client-secret' => 'Client Secret',
+  'login-enabled' => 'Ingeschakeld',
+  'login-disabled' => 'Gehandicapt',
+  'edit-login' => 'Bewerk de sociale login-instelling',
+  'edit-login-desc' => 'Op deze pagina kunt u een bepaalde instelling voor sociale login bewerken.',
+  'update-login' => 'Update instelling',
+  'social-provider' => 'Sociale aanbieder',
+  'social-provider-id' => 'ID kaart',
+  'frontend' => 
+  array (
+    'sign-in-facebook' => 'Meld je aan met facebook',
+    'sign-in-google' => 'Log in met Google',
+    'sign-in-twitter' => 'Log in met twitter',
+    'sign-in-linkedin' => 'Log in met LinkedIn',
+    'sign-in-github' => 'Log in met GitHub',
+    'error-facebook-disabled' => 'Facebook-login uitgeschakeld',
+    'error-facebook-callback' => 'Er is een fout opgetreden bij het inloggen op Facebook, log in op andere manieren.',
+    'error-google-disabled' => 'Google-login uitgeschakeld',
+    'error-google-callback' => 'Er is een fout opgetreden bij het inloggen bij Google, log in op andere manieren.',
+    'error-twitter-disabled' => 'Twitter-login uitgeschakeld',
+    'error-twitter-callback' => 'Er is een fout opgetreden bij het inloggen op Twitter, log in met andere manieren.',
+    'error-linkedin-disabled' => 'Login op LinkedIn uitgeschakeld',
+    'error-linkedin-callback' => 'Er is een fout opgetreden bij het inloggen op LinkedIn, log in op andere manieren.',
+    'error-github-disabled' => 'GitHub-login uitgeschakeld',
+    'error-github-callback' => 'Er is een fout opgetreden bij het inloggen op GitHub, log in op andere manieren.',
+    'or' => 'OF',
+    'sign-in-with' => 'Log in met uw sociale media-accounts',
+  ),
+);

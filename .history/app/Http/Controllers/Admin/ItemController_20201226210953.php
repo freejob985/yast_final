@@ -265,20 +265,15 @@ class ItemController extends Controller
         $request->validate($validate_rule);
         // validate state_id
         $select_state = State::find($request->state_id[0]);
-        // if (!$select_state) {
-        //     throw ValidationException::withMessages(
-        //         [
-        //             'a1' => 'State not found',
-        //         ]);
-        // }
+        if (!$select_state) {
+            throw ValidationException::withMessages(
+                [
+                    'a1' => 'State not found',
+                ]);
+        }
         // validate city_id
         $select_city = City::find($request->city_id[0]);
-        // if (!$select_city) {
-        //     throw ValidationException::withMessages(
-        //         [
-        //             'a2' => 'City not found',
-        //         ]);
-        // }
+
         $user_id = Auth::user()->id;
         //$user_id = 1;
         $category_id = $select_category->id;

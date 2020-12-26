@@ -264,7 +264,7 @@ class ItemController extends Controller
         // validate request
         $request->validate($validate_rule);
         // validate state_id
-        $select_state = State::find($request->a1[0]);
+        $select_state = State::find($request->state_id[0]);
         if (!$select_state) {
             throw ValidationException::withMessages(
                 [
@@ -272,7 +272,7 @@ class ItemController extends Controller
                 ]);
         }
         // validate city_id
-        $select_city = City::find($request->a2[0]);
+        $select_city = City::find($request->city_id[0]);
         if (!$select_city) {
             throw ValidationException::withMessages(
                 [

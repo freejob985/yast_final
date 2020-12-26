@@ -272,7 +272,7 @@ class ItemController extends Controller
                 ]);
         }
         // validate city_id
-        $select_city = City::find($request->a2[0]);
+        $select_city = City::find($request->city_id[0]);
         if (!$select_city) {
             throw ValidationException::withMessages(
                 [

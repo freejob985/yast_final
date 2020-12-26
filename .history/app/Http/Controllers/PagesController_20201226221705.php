@@ -398,7 +398,7 @@ class PagesController extends Controller
                 $items = Item::search($query, null, true)
                     ->where('all_st', 0)
                     ->whereIn('state_id_m', [$request->city_state[0]])
-                    ->whereIn('city_id_m', [$request->city_state[1]])
+                    ->whereIn('city_id_m', 'like', '%' . $request->city_state[1] . '%')
                     ->paginate(10);
             } else {
                 //  dd(1);

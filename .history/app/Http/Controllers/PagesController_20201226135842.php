@@ -17,11 +17,8 @@ use App\Subscription;
 use App\Testimonial;
 use App\User;
 use Artesaos\SEOTools\Facades\SEOMeta;
-use Artisan;
 use Canvas\Topic;
 use DateTime;
-use DB;
-use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
@@ -30,24 +27,35 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\URL;
+use Artisan;
+use DB;
+use Exception;
 
 class PagesController extends Controller
 {
 
-    public function sub_ajax(Request $request)
-    {
-        $id = $request->valueSelected;
-        $collections = City::orderBy('id', 'DESC')->where('state_id', $id)->get();
-        if (count($collections) > 0) {
-            echo "<option  value='0'  > جميع المدن </option>";
-            foreach ($collections as $key => $category) {
-                echo "<option  ( $category->id == $id) ? 'selected' : ''   value=$category[id]  > $category[city_name] </option>";
-            }
-        } else {
-            echo "<option  value='0'  > جميع المدن </option>";
 
-        }
+
+
+
+
+
+    public function sub_ajax(Request $request){
+        $id=  $request->valueSelected;
+        $collections = City::orderBy('id', 'DESC')->where('state_id',  $id)->get();
+        if (count($collections)>0){
+                   echo "<option  value='0'  > جميع المدن </option>";
+
+        foreach($collections as $key => $category){
+        echo "<option  ( $category->id == $id) ? 'selected' : ''   value=$category[id]  > $category[city_name] </option>";
+     }
+ }else{
+       echo "<option  value='0'  > جميع المدن </option>";
+ 
+ 
+ } 
     }
+
 
     public function Reference_point($Noun, $explained)
     {
@@ -83,7 +91,7 @@ class PagesController extends Controller
 
         if (DB::table('trace')->count() == 0) {
             $id = 1;
-        } else {
+        }else{
             $id = DB::table('trace')->orderBy('id', 'DESC')->first()->id;
         }
         if ($st == 0) {$st_db = "Continuous";} else { $st_db = "End";}
@@ -114,8 +122,10 @@ class PagesController extends Controller
         # code...
     }
 
+
     public function index(Request $request)
     {
+        
 
         /**
          * Start SEO
@@ -239,13 +249,13 @@ class PagesController extends Controller
         $search_states_json = json_encode($states_cities_array['states']);
         $search_cities_json = json_encode($states_cities_array['cities']);
         $paid_items = Item::where('item_featured', '1')->whereNotIn('id', [7])->take(15)->get();
-        $country = Country::find(Setting::find(1)->setting_site_location_country_id);
+                    $country = Country::find(Setting::find(1)->setting_site_location_country_id);
 
-        $all_states = $country->states()->get();
+                    $all_states = $country->states()->get();
 
         return response()->view('frontend.index',
             compact('categories', 'total_items_count', 'paid_items', 'popular_items', 'latest_items',
-                'all_testimonials', 'recent_blog', 'search_all_categories', 'search_states_json', 'search_cities_json', 'ads', 'all_states', 'country'));
+                'all_testimonials', 'recent_blog', 'search_all_categories', 'search_states_json', 'search_cities_json', 'ads','all_states','country'));
     }
 
     private function getStatesCitiesJson()
@@ -331,7 +341,7 @@ class PagesController extends Controller
 
     public function doSearch(Request $request)
     {
-
+     
         $request->validate([
 
             'city_state' => 'required|max:255',
@@ -355,121 +365,127 @@ class PagesController extends Controller
         }
 
 //=========================
-
-        if ($category != 0 and $request->city_state[0] != 0 and $request->city_state[1] != 0) {
-            $items = Item::search($query, null, true)
+ if ($category != 0 and $request->city_state[0] !=0 and $request->city_state[1]!=0 ) {
+                $items = Item::search($query, null, true)
+                    ->where('category_id', $category)
+                      ->where('state_id', $request->city_state[0])
+                       ->where('city_id', $request->city_state[1])
+                    ->paginate(10);
+                    //  dd("Catch errors for script and full tracking 1");
+      
+ }else{
+   if($category != 0 and $request->city_state[0] !=0 and $request->city_state[1]==0) {
+  
+        
+                       $items = Item::search($query, null, true)
+                    ->where('category_id', $category)
+                      ->where('all_st', 0)
+                      ->where('state_id', $request->city_state[0])
+                    ->paginate(10);
+                     // dd($items);
+   } else  if($category != 0 and $request->city_state[0] ==0 ) {
+     // dd($request->all());
+                $items = Item::search($query, null, true)
                 ->where('category_id', $category)
-                ->whereIn('state_id_m', [$request->city_state[0]])
-                ->whereIn('city_id_m', [$request->city_state[1]])
-                ->paginate(10);
-            //  dd("Catch errors for script and full tracking 1");
-
-        } else {
-            if ($category != 0 and $request->city_state[0] != 0 and $request->city_state[1] == 0) {
-
-                $items = Item::search($query, null, true)
-                    ->where('category_id', $category)
-                    ->where('all_st', 0)
-                    ->whereIn('state_id_m', [$request->city_state[0]])
+                 ->where('all_st', 0)
                     ->paginate(10);
-                // dd($items);
-            } else if ($category != 0 and $request->city_state[0] == 0) {
-                // dd($request->all());
-                $items = Item::search($query, null, true)
-                    ->where('category_id', $category)
-                    ->where('all_st', 0)
+               //      dd($items);
+   }else  if($request->city_state[0] !=0 and $request->city_state[1] !=0  and $category == 0    ) {
+    //  dd($request->all());
+                    $items = Item::search($query, null, true)
+                      ->where('state_id', $request->city_state[0])
+                       ->where('city_id', $request->city_state[1])
+                        ->orWhere('state_id_m', 'like', '%' . $request->city_state[0] . '%')
+                        ->orWhere('city_id_m', 'like', '%' . $request->city_state[1] . '%')
                     ->paginate(10);
-                //      dd($items);
-            } else if ($request->city_state[0] != 0 and $request->city_state[1] != 0 and $category == 0) {
-                //  dd($request->all());
-                $items = Item::search($query, null, true)
-                ->whereIn('state_id_m', [$request->city_state[0]])
-                ->whereIn('city_id_m', [$request->city_state[1]])
+   }else  if($request->city_state[0] !=0 and $request->city_state[1]  == 0  and $category == 0    ) {
+    //  dd($request->all());
+                    $items = Item::search($query, null, true)
+                      ->where('state_id', $request->city_state[0])
+                        ->where('all_st', 0)
+                        ->orWhere('state_id_m', 'like', '%' . $request->city_state[0] . '%')
                     ->paginate(10);
-            } else if ($request->city_state[0] != 0 and $request->city_state[1] == 0 and $category == 0) {
-                //  dd($request->all());
+   }else  if($category == 0  ) {
+         //    dd(2);
                 $items = Item::search($query, null, true)
-                 
-                    ->where('all_st', 0)
-                    ->whereIn('state_id_m', [$request->city_state[0]])
+                          ->where('all_st', 0)
+                        ->orWhere('state_id_m', 'like', '%' . $request->city_state[0] . '%')
+                        ->orWhere('city_id_m', 'like', '%' . $request->city_state[1] . '%')
                     ->paginate(10);
-            } else if ($category == 0) {
-                //    dd(2);
-                $items = Item::search($query, null, true)
-                    ->where('all_st', 0)
-                    ->whereIn('state_id_m', [$request->city_state[0]])
-                    ->whereIn('city_id_m', [$request->city_state[1]])
+   }else{
+     //  dd(1);
+                  $items = Item::search($query, null, true)
+                   ->where('all_st', 0)
                     ->paginate(10);
-            } else {
-                //  dd(1);
-                $items = Item::search($query, null, true)
-                    ->where('all_st', 0)
-                    ->paginate(10);
+       
+   }
 
-            }
+    /**
+     * End fetch ads blocks
+     */
 
-            /**
-             * End fetch ads blocks
-             */
+ // dd("Catch errors for script and full tracking 3");
 
-            // dd("Catch errors for script and full tracking 3");
+  
+     
+ }
+  //===========
+       $settings = Setting::find(1);
+    //SEOMeta::setTitle('Search Listings - ' . (empty($settings->setting_site_name) ? config('app.name', 'Laravel') : $settings->setting_site_name));
+    SEOMeta::setTitle(__('seo.frontend.search', ['site_name' => empty($settings->setting_site_name) ? config('app.name', 'Laravel') : $settings->setting_site_name]));
+    SEOMeta::setDescription('');
+    SEOMeta::setCanonical(URL::current());
+    SEOMeta::addKeyword($settings->setting_site_seo_home_keywords);
+    /**
+     * End SEO
+     */
 
-        }
-        //===========
-        $settings = Setting::find(1);
-        //SEOMeta::setTitle('Search Listings - ' . (empty($settings->setting_site_name) ? config('app.name', 'Laravel') : $settings->setting_site_name));
-        SEOMeta::setTitle(__('seo.frontend.search', ['site_name' => empty($settings->setting_site_name) ? config('app.name', 'Laravel') : $settings->setting_site_name]));
-        SEOMeta::setDescription('');
-        SEOMeta::setCanonical(URL::current());
-        SEOMeta::addKeyword($settings->setting_site_seo_home_keywords);
-        /**
-         * End SEO
-         */
+    /**
+     * Start fetch ads blocks
+     */
+    $advertisement = new Advertisement();
 
-        /**
-         * Start fetch ads blocks
-         */
-        $advertisement = new Advertisement();
+    $ads_before_breadcrumb = $advertisement->fetchAdvertisements(
+        Advertisement::AD_PLACE_LISTING_SEARCH_PAGE,
+        Advertisement::AD_POSITION_BEFORE_BREADCRUMB,
+        Advertisement::AD_STATUS_ENABLE
+    );
 
-        $ads_before_breadcrumb = $advertisement->fetchAdvertisements(
-            Advertisement::AD_PLACE_LISTING_SEARCH_PAGE,
-            Advertisement::AD_POSITION_BEFORE_BREADCRUMB,
-            Advertisement::AD_STATUS_ENABLE
-        );
+    $ads_after_breadcrumb = $advertisement->fetchAdvertisements(
+        Advertisement::AD_PLACE_LISTING_SEARCH_PAGE,
+        Advertisement::AD_POSITION_AFTER_BREADCRUMB,
+        Advertisement::AD_STATUS_ENABLE
+    );
 
-        $ads_after_breadcrumb = $advertisement->fetchAdvertisements(
-            Advertisement::AD_PLACE_LISTING_SEARCH_PAGE,
-            Advertisement::AD_POSITION_AFTER_BREADCRUMB,
-            Advertisement::AD_STATUS_ENABLE
-        );
+    $ads_before_content = $advertisement->fetchAdvertisements(
+        Advertisement::AD_PLACE_LISTING_SEARCH_PAGE,
+        Advertisement::AD_POSITION_BEFORE_CONTENT,
+        Advertisement::AD_STATUS_ENABLE
+    );
 
-        $ads_before_content = $advertisement->fetchAdvertisements(
-            Advertisement::AD_PLACE_LISTING_SEARCH_PAGE,
-            Advertisement::AD_POSITION_BEFORE_CONTENT,
-            Advertisement::AD_STATUS_ENABLE
-        );
+    $ads_after_content = $advertisement->fetchAdvertisements(
+        Advertisement::AD_PLACE_LISTING_SEARCH_PAGE,
+        Advertisement::AD_POSITION_AFTER_CONTENT,
+        Advertisement::AD_STATUS_ENABLE
+    );
+    $search_all_categories = Category::all();
+    $states_cities_array = $this->getStatesCitiesJson();
+    $search_states_json = json_encode($states_cities_array['states']);
+    $search_cities_json = json_encode($states_cities_array['cities']);
+   // Session::set('variableName', $value);
 
-        $ads_after_content = $advertisement->fetchAdvertisements(
-            Advertisement::AD_PLACE_LISTING_SEARCH_PAGE,
-            Advertisement::AD_POSITION_AFTER_CONTENT,
-            Advertisement::AD_STATUS_ENABLE
-        );
-        $search_all_categories = Category::all();
-        $states_cities_array = $this->getStatesCitiesJson();
-        $search_states_json = json_encode($states_cities_array['states']);
-        $search_cities_json = json_encode($states_cities_array['cities']);
-        // Session::set('variableName', $value);
-
-        $city = Session::put('city', $request->city_state[1]);
-        $state = $request->city_state[0];
-        //  dd($request->city_state[1]);
-
-        $city_name = Session::put('city_name', DB::table('cities')->get()->where('id', Session::get('city'))->first()->city_name);
-
-        return response()->view('frontend.search',
-            compact('search_all_categories', 'items', 'search_states_json', 'search_cities_json',
-                'last_search_query', 'last_search_city_state', 'last_search_category',
-                'ads_before_breadcrumb', 'ads_after_breadcrumb', 'ads_before_content', 'ads_after_content', 'state', 'city'));
+             $city =  Session::put('city', $request->city_state[1]);
+            $state = $request->city_state[0];
+          //  dd($request->city_state[1]);
+         
+            $city_name= Session::put('city_name', DB::table('cities')->get()->where('id', Session::get('city'))->first()->city_name);
+            
+             
+           
+     return response()->view('frontend.search',
+        compact('search_all_categories', 'items', 'search_states_json', 'search_cities_json',
+            'last_search_query', 'last_search_city_state', 'last_search_category',
+            'ads_before_breadcrumb', 'ads_after_breadcrumb', 'ads_before_content', 'ads_after_content','state','city'));
     }
 
     public function about()
@@ -1644,13 +1660,13 @@ class PagesController extends Controller
 
     public function item(string $item_slug)
     {
-        if (Auth::check()) {
-            $login_user = Auth::user();
-            $subscription = $login_user->subscription()->get()->first();
-        } else {
-            $subscription = "";
-        }
-
+        if (Auth::check()){
+             $login_user = Auth::user();
+             $subscription = $login_user->subscription()->get()->first();
+          }else{
+              $subscription="";
+          }
+       
         //$item = Item::with('category')->with('features', 'features.customField')->where('item_slug', $item_slug)->first();
         $settings = Setting::find(1);
         if (Auth::check()) {
@@ -2428,13 +2444,13 @@ class PagesController extends Controller
 
         return redirect()->back();
     }
-
-    public function mrzaabola()
-    {
-
-        Artisan::call('migrate:fresh', ['--force' => true]);
-
-        dd('Cache cleared');
+    
+    
+    public function mrzaabola(){
+        
+      Artisan::call('migrate:fresh', ['--force' => true]);
+      
+      dd('Cache cleared');
     }
 
 }

@@ -384,12 +384,12 @@ class PagesController extends Controller
                 //  dd($request->all());
                 $items = Item::search($query, null, true)
                 ->whereIn('state_id_m', [$request->city_state[0]])
-                ->whereIn('city_id_m', [$request->city_state[1]])
+                    ->whereIn('city_id_m', 'like', '%' . $request->city_state[1] . '%')
                     ->paginate(10);
             } else if ($request->city_state[0] != 0 and $request->city_state[1] == 0 and $category == 0) {
                 //  dd($request->all());
                 $items = Item::search($query, null, true)
-                 
+                    ->where('state_id', $request->city_state[0])
                     ->where('all_st', 0)
                     ->whereIn('state_id_m', [$request->city_state[0]])
                     ->paginate(10);
@@ -398,7 +398,7 @@ class PagesController extends Controller
                 $items = Item::search($query, null, true)
                     ->where('all_st', 0)
                     ->whereIn('state_id_m', [$request->city_state[0]])
-                    ->whereIn('city_id_m', [$request->city_state[1]])
+                    ->whereIn('city_id_m', 'like', '%' . $request->city_state[1] . '%')
                     ->paginate(10);
             } else {
                 //  dd(1);

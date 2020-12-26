@@ -407,7 +407,6 @@ class PagesController extends Controller
                     ->paginate(10);
             } else {
                 //  dd(1);
-                dd("Catch errors for script and full tracking ( 7 )");
                 $items = Item::search($query, null, true)
                     ->where('all_st', 0)
                     ->paginate(10);

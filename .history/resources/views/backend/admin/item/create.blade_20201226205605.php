@@ -406,9 +406,7 @@
                             @enderror
                         </div>
 
-                        <div class="col-md-4" style="
-                        display: none;
-                    ">
+                        <div class="col-md-4" >
                             <label for="city_id" class="text-black">{{ __('backend.city.city') }}</label>
                             <select id="select_city_id" class="custom-select @error('city_id') is-invalid @enderror"
                                 name="city_id[]">

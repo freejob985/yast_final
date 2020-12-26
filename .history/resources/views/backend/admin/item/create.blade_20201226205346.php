@@ -781,7 +781,7 @@
                 <div class="row">
                     <div class="col-md-12 text-center">
                         <div id="image_demo"></div>
-                    </div>
+                    </div>ن
                 </div>
                 <div class="row">
                     <div class="col-md-12 text-center">

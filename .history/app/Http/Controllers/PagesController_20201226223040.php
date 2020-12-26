@@ -407,7 +407,7 @@ class PagesController extends Controller
 
             }
 
-            /**ن
+            /**
              * End fetch ads blocks
              */
 

@@ -390,7 +390,9 @@ class PagesController extends Controller
             } else if ($request->city_state[0] != 0 and $request->city_state[1] == 0 and $category == 0) {
                 //  dd($request->all());
                 $items = Item::search($query, null, true)
+                 
                     ->where('all_st', 0)
+                    ->whereIn('state_id_m', [$request->city_state[0]])
                     ->paginate(10);
             } else if ($category == 0) {
                 //    dd(2);
@@ -407,7 +409,7 @@ class PagesController extends Controller
 
             }
 
-            /**ن
+            /**
              * End fetch ads blocks
              */
 

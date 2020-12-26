@@ -362,12 +362,12 @@ class PagesController extends Controller
                 ->whereIn('state_id_m', [$request->city_state[0]])
                 ->whereIn('city_id_m', [$request->city_state[1]])
                 ->paginate(10);
-                
+                dd("Catch errors for script and full tracking ( 1 )");
             //  dd("Catch errors for script and full tracking 1");
 
         } else {
             if ($category != 0 and $request->city_state[0] != 0 and $request->city_state[1] == 0) {
-
+                dd("Catch errors for script and full tracking ( 2 )");
                 $items = Item::search($query, null, true)
                     ->where('category_id', $category)
                     ->where('all_st', 0)
@@ -376,6 +376,7 @@ class PagesController extends Controller
                 // dd($items);
             } else if ($category != 0 and $request->city_state[0] == 0) {
                 // dd($request->all());
+                
                 $items = Item::search($query, null, true)
                     ->where('category_id', $category)
                     ->where('all_st', 0)
@@ -390,7 +391,9 @@ class PagesController extends Controller
             } else if ($request->city_state[0] != 0 and $request->city_state[1] == 0 and $category == 0) {
                 //  dd($request->all());
                 $items = Item::search($query, null, true)
+                 
                     ->where('all_st', 0)
+                    ->whereIn('state_id_m', [$request->city_state[0]])
                     ->paginate(10);
             } else if ($category == 0) {
                 //    dd(2);
@@ -407,7 +410,7 @@ class PagesController extends Controller
 
             }
 
-            /**ن
+            /**
              * End fetch ads blocks
              */
 

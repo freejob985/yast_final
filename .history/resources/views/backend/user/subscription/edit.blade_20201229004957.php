@@ -150,15 +150,12 @@ function generateRandomString($length = 10) {
                             <input type="hidden" id="custId" name="price" value="{{ $plan->plan_price }}">
                             <input type="hidden" id="custId" name="User" value="{{Auth::user()->name}}">
                             <input type="hidden" id="custId" name="id_u" value="{{Auth::user()->id}}">
+
+                            <label style="font-size: 1px;">برجاء الدخول لسداد الفاتورة</label>
+                            <a href="{{ $plan->link }}" class="btn btn-info btn-xs" role="button">رابط الفاتورة</a>
                             <input type="hidden" id="custIds" name="url" value="" class="url{{$plan->id}}" placeholder="برجاء ارسال الفاتوره">
                             <input type="hidden" id="custId" name="subscription_end_date" value="<?php  $mutable = Carbon::now(); $modifiedMutable = $mutable->add((int)$plan->plan_period, 'day');   echo   $mutable->isoFormat('D-M-Y');?>">
                             <input type="hidden" class="custId" name="plan_period" value="{{$plan->plan_period}}">
-                            
-                            <a href="{{ $plan->link }}" target="_blank" role="button"> <img src="https://icon-library.com/images/visa-mastercard-icon/visa-mastercard-icon-9.jpg" class="img-responsive" alt="Cinque Terre" target="_blank"></a>
-                            <input type="radio" name="Type" value="visa mastercard" attr=".url{{$plan->id}}" checked>visa mastercard</label>
-                            <label style="font-size: 1px;">برجاء الدخول لسداد الفاتورة</label>
-                            <a href="{{ $plan->link }}" class="btn btn-info btn-xs" role="button">رابط الفاتورة</a>
-                           
                             <br>
                             <hr>
                             <div class="row form-group justify-content-between">

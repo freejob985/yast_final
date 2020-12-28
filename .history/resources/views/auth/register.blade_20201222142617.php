@@ -133,7 +133,7 @@
 <a href="https://yasta.net/terms-of-service">
 موقع ياسطا
 </a>
-<label><input type="checkbox" name="Option" value="Option" required="required"></label>
+<label><input type="checkbox" name="Option" value="Option"></label>
 </div>
 
 

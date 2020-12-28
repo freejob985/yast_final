@@ -137,7 +137,7 @@ function generateRandomString($length = 10) {
                                 <textarea class="form-control" rows="5" id="comment" placeholder="Notes"
                                     name="Notes">Notes</textarea>
                             </div>
-                            @dd(gettype($plan->plan_price));
+                            @dd(gettype($plan->plan_price);
                              @if (!$plan->plan_price ==="0.00")
                                  
                           

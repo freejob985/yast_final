@@ -1,8 +1,9 @@
-<?php
+@php
+  
 $login_user = Auth::user();
 $subscription = $login_user->subscription()->get()->first();
-dd($subscription);
-?>
+
+@endphp
 <!-- Sidebar -->
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
@@ -101,7 +102,7 @@ dd($subscription);
     </li>
    @endif
     <li class="nav-item">
-        <a class="nav-link" href="{{ route('user.subscriptions.index') }}">
+        <a class="nav-link" href="{{ route('user.subscriptions.edit', $subscription->id) }}">
             <i class="far fa-credit-card"></i>
             <span>{{ __('backend.sidebar.subscription') }}</span></a>
     </li>

@@ -159,6 +159,7 @@ class UserController extends Controller
         // change password
         $login_user->password = bcrypt($request->new_password);
         $login_user->save();
+
         \Session::flash('flash_message', __('alert.user-profile-password-changed'));
         \Session::flash('flash_type', 'success')
         return redirect()->route('user.profile.edit');

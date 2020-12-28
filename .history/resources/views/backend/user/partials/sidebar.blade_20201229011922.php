@@ -1,7 +1,7 @@
 <?php
 $login_user = Auth::user();
 $subscription = $login_user->subscription()->get()->first();
-dd($subscription);
+dd
 ?>
 <!-- Sidebar -->
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">

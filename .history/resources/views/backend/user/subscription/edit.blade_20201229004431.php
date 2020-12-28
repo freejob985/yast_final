@@ -178,7 +178,6 @@ function generateRandomString($length = 10) {
                             </div>
 
                         </form>
-                        {{-- ######################################################## --}}
                     </div>
                 </div>
             </div>

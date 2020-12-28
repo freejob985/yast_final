@@ -130,7 +130,7 @@ function generateRandomString($length = 10) {
                 <div class="row mb-3">
                     <hr>
                     <div class="col-12">
-                        {{-- ######################################################## --}}
+                        ########################################################
                         <form method="post" action=" {{ route('user.Transforma') }}" class="p-5">
                             @csrf
                             <div class="form-group" style=" display: none;">
@@ -178,7 +178,6 @@ function generateRandomString($length = 10) {
                             </div>
 
                         </form>
-                        {{-- ######################################################## --}}
                     </div>
                 </div>
             </div>

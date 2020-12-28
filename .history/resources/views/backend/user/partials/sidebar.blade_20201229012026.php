@@ -101,7 +101,7 @@ $subscription = $login_user->subscription()->get()->first();
     </li>
    @endif
     <li class="nav-item">
-        <a class="nav-link" href="{{ route('user.subscriptions.edit', $subscription->id) }}">
+        <a class="nav-link" href="{{ route('user.subscriptions.index') }}">
             <i class="far fa-credit-card"></i>
             <span>{{ __('backend.sidebar.subscription') }}</span></a>
     </li>

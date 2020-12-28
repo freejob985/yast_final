@@ -23,14 +23,12 @@ class SubscriptionController extends Controller
 
     public function Transformation(Request $request)
     {
-        dd($request->all());
-        
         $Orders = DB::table('Orders')->where('id_u', Auth::user()->id)->exists();
         if ($Orders) {
             return redirect()->back()->with('message', "لم يتم انتهاء الاشتراك هناك اشتراك موجود مسبقا");
 
         } else {
-
+            
             $code = $request->Code;
             DB::table('Orders')->insert($request->all());
             return redirect()->back()->with('message', "سيتم تفعيل الاشتراك فور معاملة مراجعة الدفع. رقم العملية هو  #$code");

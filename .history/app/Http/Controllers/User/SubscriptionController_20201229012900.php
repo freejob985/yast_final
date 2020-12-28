@@ -24,7 +24,6 @@ class SubscriptionController extends Controller
     public function Transformation(Request $request)
     {
         dd($request->all());
-        
         $Orders = DB::table('Orders')->where('id_u', Auth::user()->id)->exists();
         if ($Orders) {
             return redirect()->back()->with('message', "لم يتم انتهاء الاشتراك هناك اشتراك موجود مسبقا");

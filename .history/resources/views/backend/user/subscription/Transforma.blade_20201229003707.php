@@ -21,8 +21,10 @@ function generateRandomString($length = 10) {
         <input type="radio" name="Type" value="Bank transfer" attr=".url{{$plan->id}}">Bank
         transfer</label>
     <label class="radio-inline" style="display: none;">
-    <img style="display: none;" src="https://mashbac.com/wp-content/uploads/2018/07/method-3.png">
-    <input type="radio" style="display: none;" name="Type" value="Vodafone Cash" attr=".url{{$plan->id}}" checked>Vodafone Cash</label>
+        <img style="display: none;"
+            src="https://mashbac.com/wp-content/uploads/2018/07/method-3.png">
+        <input type="radio" style="display: none;" name="Type" value="Vodafone Cash"
+            attr=".url{{$plan->id}}" checked>Vodafone Cash</label>
     <input type="hidden" id="custId" name="Code" value="{{generateRandomString()}}">
     <input type="hidden" id="custId" name="Package" value="{{ $plan->plan_name }}">
     <input type="hidden" id="custId" name="price" value="{{ $plan->plan_price }}">

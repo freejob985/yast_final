@@ -50,7 +50,7 @@ class ApplicationsController extends Controller
         /**
          * Start SEO
          */
-
+        dd(1);
         $settings = Setting::find(1);
         //SEOMeta::setTitle('Dashboard - Plans - ' . (empty($settings->setting_site_name) ? config('app.name', 'Laravel') : $settings->setting_site_name));
         SEOMeta::setTitle(__('seo.backend.admin.plan.plans', ['site_name' => empty($settings->setting_site_name) ? config('app.name', 'Laravel') : $settings->setting_site_name]));

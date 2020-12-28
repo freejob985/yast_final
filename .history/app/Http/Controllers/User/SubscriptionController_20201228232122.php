@@ -126,6 +126,21 @@ class SubscriptionController extends Controller
         SEOMeta::setDescription('');
         SEOMeta::setCanonical(URL::current());
         SEOMeta::addKeyword($settings->setting_site_seo_home_keywords);
+        /**
+         * End SEO
+         */
+
+//        $plan = $subscription->plan()->get()->first();
+        //
+        //        if($plan->plan_type == Plan::PLAN_TYPE_PAID)
+        //        {
+        //            \Session::flash('flash_message', 'You must cancel current plan before switch to other plans.');
+        //            \Session::flash('flash_type', 'danger');
+        //
+        //            return redirect()->route('user.subscriptions.index');
+        //        }
+
+//dd(Auth::user()->Type);
         if (Auth::user()->Type == 1) {
             $type = "صنايعي";
 

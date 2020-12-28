@@ -138,7 +138,8 @@ function generateRandomString($length = 10) {
                                     name="Notes">Notes</textarea>
                             </div>
                             {{-- @dd(gettype($plan->plan_price)); --}}
-                             @if ($plan->plan_price === "0.00")     
+                             @if ($plan->plan_price === "0.00")
+                                 
                              @else
                             <label class="radio-inline">
                                 <img src="https://www.flaticon.com/svg/static/icons/svg/2398/2398987.svg">

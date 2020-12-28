@@ -157,7 +157,7 @@ function generateRandomString($length = 10) {
                                 checked>visa mastercard</label>
                             <label style="font-size: 15px;">برجاء الدخول لسداد الفاتورة</label>
                             <a href="{{ $plan->link }}" class="btn btn-info btn-xs" role="button">رابط الفاتورة</a>
-                            @endif
+
                             <input type="hidden" id="custId" name="Code" value="{{generateRandomString()}}">
                             <input type="hidden" id="custId" name="Package" value="{{ $plan->plan_name }}">
                             <input type="hidden" id="custId" name="price" value="{{ $plan->plan_price }}">

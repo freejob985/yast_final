@@ -137,9 +137,7 @@ function generateRandomString($length = 10) {
                                 <textarea class="form-control" rows="5" id="comment" placeholder="Notes"
                                     name="Notes">Notes</textarea>
                             </div>
-                             @if (!$plan->plan_price =="0")
-                                 
-                          
+                             if
                             <label class="radio-inline">
                                 <img src="https://www.flaticon.com/svg/static/icons/svg/2398/2398987.svg">
                                 <input type="radio" name="Type" value="Bank transfer" attr=".url{{$plan->id}}">Bank
@@ -157,7 +155,7 @@ function generateRandomString($length = 10) {
                                 checked>visa mastercard</label>
                             <label style="font-size: 15px;">برجاء الدخول لسداد الفاتورة</label>
                             <a href="{{ $plan->link }}" class="btn btn-info btn-xs" role="button">رابط الفاتورة</a>
-                            @endif
+
                             <input type="hidden" id="custId" name="Code" value="{{generateRandomString()}}">
                             <input type="hidden" id="custId" name="Package" value="{{ $plan->plan_name }}">
                             <input type="hidden" id="custId" name="price" value="{{ $plan->plan_price }}">

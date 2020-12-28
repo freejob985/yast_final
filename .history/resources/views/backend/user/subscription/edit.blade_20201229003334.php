@@ -130,7 +130,8 @@ function generateRandomString($length = 10) {
                 <div class="row mb-3">
                     <hr>
                     <div class="col-12">
-                      @include('backend.user.subscription.Transforma')
+                        
+                      @include('views.backend.user.subscription.Transforma')
                     </div>
                 </div>
             </div>

@@ -161,8 +161,7 @@ class UserController extends Controller
         $login_user->save();
 
         \Session::flash('flash_message', __('alert.user-profile-password-changed'));
-        \Session::flash('flash_type', 'success');
-
+        \Session::flash('flash_type', 'success')
         return redirect()->route('user.profile.edit');
     }
 }

@@ -138,7 +138,7 @@ function generateRandomString($length = 10) {
                                     name="Notes">Notes</textarea>
                             </div>
                             @dd(gettype($plan->plan_price));
-                             @if ($plan->plan_price =! "0.00")
+                             @if ($plan->plan_price =! 0.00")
                                  
                           
                             <label class="radio-inline">

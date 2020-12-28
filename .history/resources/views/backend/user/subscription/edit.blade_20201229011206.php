@@ -59,9 +59,7 @@ function generateRandomString($length = 10) {
         <p class="mb-4"> {{$date_def}}</p>
 
     </div>
-    <div class="col-3 text-right"  style="
-    display: none;
-">
+    <div class="col-3 text-right"  >
         <a href="{{ route('user.subscriptions.index') }}" class="btn btn-info btn-icon-split">
             <span class="icon text-white-50">
                 <i class="fas fa-backspace"></i>

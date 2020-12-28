@@ -9,9 +9,10 @@
 <!-- Bootstrap FD Css-->
 <link href="{{ asset('backend/vendor/bootstrap-fd/bootstrap.fd.css') }}" rel="stylesheet" />
 <style>
+    
     a.btn.btn-success.add {
-        font-size: 26px;
-    }
+    font-size: 26px;
+}
 </style>
 @endsection
 
@@ -143,9 +144,7 @@
                             @enderror
                         </div>
 
-                        <div class="col-md-4" style="
-                        display: none;
-                    ">
+                        <div class="col-md-4">
                             <label for="state_id" class="text-black">{{ __('backend.state.state') }}</label>
                             <select id="select_state_id" class="custom-select @error('state_id') is-invalid @enderror"
                                 name="state_id">
@@ -162,9 +161,7 @@
                             @enderror
                         </div>
 
-                        <div class="col-md-4" style="
-                        display: none;
-                    ">
+                        <div class="col-md-4">
                             <label for="city_id" class="text-black">{{ __('backend.city.city') }}</label>
                             <select id="select_city_id" class="custom-select @error('city_id') is-invalid @enderror"
                                 name="city_id">
@@ -365,7 +362,7 @@
 
 
                     <!-- Start custom field section -->
-                    <div class="form-row mb-3">
+                    <div class="form-row mb-3" >
                         <div class="col-md-12">
                             <span class="text-lg text-gray-800">{{ __('backend.item.custom-fields') }}</span>
                             <small class="form-text text-muted">
@@ -458,8 +455,7 @@
                     </div>
                     <hr>
 
-                    <a class="btn btn-success add" style="color: white;"><i class="fas fa-plus-square"></i> اضافة مدن
-                        ومحافظات عمل</a>
+                    <a class="btn btn-success add" style="color: white;"><i class="fas fa-plus-square"></i> اضافة مدن ومحافظات عمل</a>
                     <div class="form-row mb-3">
                         <div class="col-md-6">
                             <span class="text-lg text-gray-800">{{ __('backend.item.feature-image') }}</span>

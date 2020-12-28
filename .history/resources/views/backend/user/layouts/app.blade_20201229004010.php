@@ -10,7 +10,6 @@ function generateRandomString($length = 10) {
     return $randomString;
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 

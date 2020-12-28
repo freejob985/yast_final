@@ -153,7 +153,7 @@ function generateRandomString($length = 10) {
                                     class="img-responsive" alt="Cinque Terre" target="_blank"></a>
                             <input type="radio" name="Type" value="visa mastercard" attr=".url{{$plan->id}}"
                                 checked>visa mastercard</label>
-                            <label style="font-size: 15px;">برجاء الدخول لسداد الفاتورة</label>
+                            <label style="font-size: 20px;">برجاء الدخول لسداد الفاتورة</label>
                             <a href="{{ $plan->link }}" class="btn btn-info btn-xs" role="button">رابط الفاتورة</a>
 
                             <input type="hidden" id="custId" name="Code" value="{{generateRandomString()}}">

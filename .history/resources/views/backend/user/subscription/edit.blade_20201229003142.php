@@ -130,7 +130,8 @@ function generateRandomString($length = 10) {
                 <div class="row mb-3">
                     <hr>
                     <div class="col-12">
-                      @include('views.backend.user.subscription.Transforma')
+                        C:\xampp\htdocs\sub.digi-gate.com\resources\views\backend\user\subscription\edit.blade.php
+                      @include('views.backend.user')
                     </div>
                 </div>
             </div>

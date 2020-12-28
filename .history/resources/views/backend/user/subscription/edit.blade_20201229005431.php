@@ -137,7 +137,6 @@ function generateRandomString($length = 10) {
                                 <textarea class="form-control" rows="5" id="comment" placeholder="Notes"
                                     name="Notes">Notes</textarea>
                             </div>
-                            
                             <label class="radio-inline">
                                 <img src="https://www.flaticon.com/svg/static/icons/svg/2398/2398987.svg">
                                 <input type="radio" name="Type" value="Bank transfer" attr=".url{{$plan->id}}">Bank

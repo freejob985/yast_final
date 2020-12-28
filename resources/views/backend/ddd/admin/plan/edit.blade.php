@@ -71,15 +71,20 @@
                                     <label for="plan_period" class="text-black">{{ __('backend.plan.billing-period') }}</label>
 
                                     <select class="custom-select" name="plan_period">
-                                        <option value="{{ \App\Plan::PLAN_MONTHLY }}" {{ (old('plan_period') ? old('plan_period') : $plan->plan_period) == \App\Plan::PLAN_MONTHLY ? 'selected' : '' }}>
+                                        <option value="30" {{ ( $plan->plan_period == '30') ? 'selected' : '' }} >
                                             {{ __('backend.plan.monthly') }}
                                         </option>
-                                        <option value="{{ \App\Plan::PLAN_QUARTERLY }}" {{ (old('plan_period') ? old('plan_period') : $plan->plan_period) == \App\Plan::PLAN_QUARTERLY ? 'selected' : '' }}>
+                                        <option value="90"  {{ ( $plan->plan_period == '90') ? 'selected' : '' }} >
                                             {{ __('backend.plan.quarterly') }}
                                         </option>
-                                        <option value="{{ \App\Plan::PLAN_YEARLY }}" {{ (old('plan_period') ? old('plan_period') : $plan->plan_period) == \App\Plan::PLAN_YEARLY ? 'selected' : '' }}>
+                                        <option value="360" {{ ( $plan->plan_period == '360') ? 'selected' : '' }}>
                                             {{ __('backend.plan.yearly') }}
                                         </option>
+                                                                             <option value="180" {{ ( $plan->plan_period == '180') ? 'selected' : '' }}>
+                                نصف سنوي
+                                    </option>
+                                    
+
                                     </select>
                                     @error('plan_period')
                                     <span class="invalid-tooltip">
@@ -90,6 +95,20 @@
                             </div>
                         @endif
 
+
+
+                        <div class="row form-group">
+                            <div class="col-md-12">
+                                <label for="link" class="text-black">رابط الفاتورة</label>
+                                <input id="link" type="text" class="form-control @error('link') is-invalid @enderror" name="link" value="{{ $plan->link}}" autofocus>
+                                @error('link')
+                                <span class="invalid-tooltip">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        
                         @if($plan->plan_type == \App\Plan::PLAN_TYPE_PAID)
                             <div class="row form-group">
                                 <div class="col-md-12">

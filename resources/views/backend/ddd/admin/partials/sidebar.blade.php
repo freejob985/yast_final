@@ -200,7 +200,9 @@
         <div id="collapse_subscription" class="collapse" aria-labelledby="collapse_subscription" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <a class="collapse-item" href="{{ route('admin.plans.index') }}">{{ __('backend.sidebar.plan') }}</a>
-                <a class="collapse-item" href="{{ route('admin.subscriptions.index') }}">{{ __('backend.sidebar.subscription') }}</a>
+                <a class="collapse-item"  style="
+    display: none;
+" href="{{ route('admin.subscriptions.index') }}">{{ __('backend.sidebar.subscription') }}</a>
                                 <a class="collapse-item" href="{{ route('admin.Applications.index') }}">طلبات الاشتراكات</a>
 
             </div>

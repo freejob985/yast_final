@@ -1,3 +1,13 @@
+
+<?php
+	function dateDiff($date1, $date2) 
+	{
+	  $date1_ts = strtotime($date1);
+	  $date2_ts = strtotime($date2);
+	  $diff = $date2_ts - $date1_ts;
+	  return round($diff / 86400);
+	}
+?>
 @extends('backend.admin.layouts.app')
 
 @section('styles')
@@ -23,6 +33,9 @@
                                 <th>السعر</th>
                                 <th>المستخدم</th>
                                 <th>عن طريق</th>
+                                    <th>تاريخ نهاية الاشتراك</th>
+                            <th>باقي علي الاشتراك</th>
+    <th>الرابط</th>
                                 <th>التفعيل</th>
                             </tr>
                             </thead>
@@ -33,6 +46,9 @@
                                 <th>السعر</th>
                                 <th>المستخدم</th>
                                 <th>عن طريق</th>
+                                <th>تاريخ نهاية الاشتراك</th>
+                                <th>باقي علي الاشتراك</th>
+                                <th>الرابط</th>
                                 <th>التفعيل</th>
                             </tr>
                             </tfoot>
@@ -44,6 +60,18 @@
                                        <td>{{$plan->price}}</td>
                                         <td>{{$plan->User}}</td>
                                          <td>{{$plan->Type}}</td>
+                                          <td>{{$plan->subscription_end_date}}</td>
+                                           <td>
+                                               <?php
+                                               
+$date=date("d-m-Y");
+echo dateDiff($date,$plan->subscription_end_date);
+
+
+                                               ?>
+                                               
+                                           </td>
+                                           <td><a href="{{$plan->url}}">الرابط</a></td>
                                           <td>
                                               
                     <form action="{{ route('admin.CourseProgresss.quick',$plan->id) }}" method="POST">

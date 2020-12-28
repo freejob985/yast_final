@@ -66,16 +66,16 @@
                                 <label for="plan_period" class="text-black">{{ __('backend.plan.billing-period') }}</label>
 
                                 <select class="custom-select" name="plan_period">
-                                    <option value="{{ \App\Plan::PLAN_MONTHLY }}" {{ old('plan_period') == \App\Plan::PLAN_MONTHLY ? 'selected' : '' }}>
+                                    <option value="30" {{ old('plan_period') == \App\Plan::PLAN_MONTHLY ? 'selected' : '' }}>
                                         {{ __('backend.plan.monthly') }}
                                     </option>
-                                    <option value="{{ \App\Plan::PLAN_QUARTERLY }}" {{ old('plan_period') == \App\Plan::PLAN_QUARTERLY ? 'selected' : '' }}>
+                                    <option value="90" {{ old('plan_period') == \App\Plan::PLAN_QUARTERLY ? 'selected' : '' }}>
                                         {{ __('backend.plan.quarterly') }}
                                     </option>
-                                    <option value="5" {{ old('plan_period') == \App\Plan::PLAN_YEARLY ? 'selected' : '' }}>
+                                    <option value="360" {{ old('plan_period') == \App\Plan::PLAN_YEARLY ? 'selected' : '' }}>
                                         {{ __('backend.plan.yearly') }}
                                     </option>
-                                                                        <option value="{{ \App\Plan::PLAN_YEARLY }}" {{ old('plan_period') == \App\Plan::PLAN_YEARLY ? 'selected' : '' }}>
+                                                                        <option value="180">
                                 نصف سنوي
                                     </option>
 
@@ -88,6 +88,17 @@
                             </div>
                         </div>
 
+                        <div class="row form-group">
+                            <div class="col-md-12">
+                                <label for="link" class="text-black">رابط الفاتورة</label>
+                                <input id="link" type="text" class="form-control @error('link') is-invalid @enderror" name="link" value="{{ old('link') }}" autofocus>
+                                @error('link')
+                                <span class="invalid-tooltip">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
 
 
                         <div class="row form-group">

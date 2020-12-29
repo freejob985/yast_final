@@ -332,9 +332,8 @@ class PagesController extends Controller
     public function doSearch(Request $request)
     {
         #############################################
+
         $countries = DB::table('countries')->get()->where('id', $request->city_state[0])->first();
-        $name_countries= $countries->name;
-        dd($name_countries);
         #############################################
 
         $request->validate([

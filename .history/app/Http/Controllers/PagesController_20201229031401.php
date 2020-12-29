@@ -331,11 +331,11 @@ class PagesController extends Controller
 
     public function doSearch(Request $request)
     {
-        #############################################
+
+
         $countries = DB::table('countries')->get()->where('id', $request->city_state[0])->first();
-        $name_countries= $countries->name;
-        dd($name_countries);
-        #############################################
+        
+        
 
         $request->validate([
 
@@ -367,7 +367,7 @@ class PagesController extends Controller
                 ->whereIn('state_id_m', [$request->city_state[0]])
                 ->whereIn('city_id_m', [$request->city_state[1]])
                 ->paginate(10);
-
+                
             //  dd("Catch errors for script and full tracking 1");
 
         } else {
@@ -389,8 +389,8 @@ class PagesController extends Controller
             } else if ($request->city_state[0] != 0 and $request->city_state[1] != 0 and $category == 0) {
                 //  dd($request->all());
                 $items = Item::search($query, null, true)
-                    ->whereIn('state_id_m', [$request->city_state[0]])
-                    ->whereIn('city_id_m', [$request->city_state[1]])
+                ->whereIn('state_id_m', [$request->city_state[0]])
+                ->whereIn('city_id_m', [$request->city_state[1]])
                     ->paginate(10);
             } else if ($request->city_state[0] != 0 and $request->city_state[1] == 0 and $category == 0) {
                 //  dd($request->all());

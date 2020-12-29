@@ -333,8 +333,7 @@ class PagesController extends Controller
     {
         #############################################
         $countries = DB::table('countries')->get()->where('id', $request->city_state[0])->first();
-        $name_countries= $countries->name;
-        dd($name_countries);
+        $name_countries  $countries->
         #############################################
 
         $request->validate([

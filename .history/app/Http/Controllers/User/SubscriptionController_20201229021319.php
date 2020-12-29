@@ -42,6 +42,7 @@ class SubscriptionController extends Controller
                 $array['url']= $request->input('url');
                 $array['st']= 1;
                 return redirect()->back()->with('message', "سيتم تفعيل الاشتراك فور معاملة مراجعة الدفع. رقم العملية هو  #$code");
+
             } else {
                 $code = $request->Code;
                 DB::table('Orders')->insert($request->all());

@@ -171,7 +171,8 @@ class SubscriptionController extends Controller
             $date_def = "لم يتم الاشتراك في اي باقة";
         }
 
-        $all_plans = Plan::where('Type', Auth::user()->Type)
+        $all_plans = Plan::
+            ->where('Type', Auth::user()->Type)
             ->where('plan_status', "1")
             ->get();
         return response()->view('backend.user.subscription.edit',

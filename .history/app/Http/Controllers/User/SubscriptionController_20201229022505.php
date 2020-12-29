@@ -26,6 +26,7 @@ class SubscriptionController extends Controller
         $Orders = DB::table('Orders')->where('id_u', Auth::user()->id)->exists();
         if ($Orders) {
             return redirect()->back()->with('message', "لم يتم انتهاء الاشتراك هناك اشتراك موجود مسبقا");
+
         } else {
             if ($request->input('price') === "0.00") {
                 $code = $request->Code;

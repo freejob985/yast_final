@@ -23,9 +23,11 @@ class SubscriptionController extends Controller
 
     public function Transformation(Request $request)
     {
+dd(Auth::user()->id)
         $Orders = DB::table('Orders')->where('id_u', Auth::user()->id)->exists();
         if ($Orders) {
             return redirect()->back()->with('message', "لم يتم انتهاء الاشتراك هناك اشتراك موجود مسبقا");
+
         } else {
             if ($request->input('price') === "0.00") {
                 $code = $request->Code;
@@ -40,7 +42,7 @@ class SubscriptionController extends Controller
                 $array['plan_period']= $request->input('plan_period');
                 $array['url']= $request->input('url');
                 $array['st']= 1;
-                DB::table('Orders')->insert($array);
+                DB::table('Orders')->insert($request->all());
                 return redirect()->back()->with('message', "سيتم تفعيل الاشتراك فور معاملة مراجعة الدفع. رقم العملية هو  #$code");
             } else {
                 $code = $request->Code;

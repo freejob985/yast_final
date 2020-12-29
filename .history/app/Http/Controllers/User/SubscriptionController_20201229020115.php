@@ -23,6 +23,7 @@ class SubscriptionController extends Controller
 
     public function Transformation(Request $request)
     {
+        dd($request->all());
 
         $Orders = DB::table('Orders')->where('id_u', Auth::user()->id)->exists();
         if ($Orders) {
@@ -30,17 +31,28 @@ class SubscriptionController extends Controller
 
         } else {
             if ($plan->plan_price === "0.00") {
+                // "Notes" => "Notes"
+                // "Code" => "OM9K9wPj98"
+                // "Package" => "عميل - خطة مجانية"
+                // "price" => "0.00"
+                // "User" => "asdasdw22"
+                // "id_u" => "206"
+                // "url" => null
+                // "subscription_end_date" => "27-1-2021"
+                // "plan_period" => "30"
                 $array=array();
                 $array['Notes']= $request->input('Notes');
                 $array['Code']= $request->input('Code');
-                $array['Package']= $request->input('Package');
-                $array['price']= $request->input('price');
-                $array['User']= $request->input('User');
-                $array['id_u']= $request->input('id_u');
-                $array['subscription_end_date']= $request->input('subscription_end_date');
-                $array['plan_period']= $request->input('plan_period');
-                $array['url']= $request->input('url');
-                $array['st']= 1;
+                $array['image']= $request->input('image');
+                $array['slug']= $request->input('slug');
+                $array['about_service']= $request->input('about_service');
+                $array['project_cat_id']= $request->input('project_cat_id');
+                $array['project_cat_id']= $request->input('project_cat_id');
+                $array['project_cat_id']= $request->input('project_cat_id');
+                $array['project_cat_id']= $request->input('project_cat_id');
+
+
+
             } else {
                 $code = $request->Code;
                 DB::table('Orders')->insert($request->all());

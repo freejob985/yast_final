@@ -23,30 +23,21 @@ class SubscriptionController extends Controller
 
     public function Transformation(Request $request)
     {
+        dd($request->all());
 
         $Orders = DB::table('Orders')->where('id_u', Auth::user()->id)->exists();
         if ($Orders) {
             return redirect()->back()->with('message', "لم يتم انتهاء الاشتراك هناك اشتراك موجود مسبقا");
 
         } else {
-            if ($plan->plan_price === "0.00") {
-                $array=array();
-                $array['Notes']= $request->input('Notes');
-                $array['Code']= $request->input('Code');
-                $array['Package']= $request->input('Package');
-                $array['price']= $request->input('price');
-                $array['User']= $request->input('User');
-                $array['id_u']= $request->input('id_u');
-                $array['subscription_end_date']= $request->input('subscription_end_date');
-                $array['plan_period']= $request->input('plan_period');
-                $array['url']= $request->input('url');
-                $array['st']= 1;
-            } else {
-                $code = $request->Code;
-                DB::table('Orders')->insert($request->all());
-                return redirect()->back()->with('message', "سيتم تفعيل الاشتراك فور معاملة مراجعة الدفع. رقم العملية هو  #$code");
-            }
+            if(){
 
+            }else{
+                
+            }
+            $code = $request->Code;
+            DB::table('Orders')->insert($request->all());
+            return redirect()->back()->with('message', "سيتم تفعيل الاشتراك فور معاملة مراجعة الدفع. رقم العملية هو  #$code");
         }
 
     }

@@ -28,7 +28,7 @@
                     id="select_state_id" name="city_state[]">
                     <option value="0"> جميع المحافظات</option>
                     @foreach(DB::table('states')->orderBy('id', 'desc')->get() as $category)
-                    <option   {{ ( $category->id == Session::get('governorates_id')) ? 'selected' : '' }}  value="{{ $category->id }}">{{ $category->state_name }}</option>
+                    <option   {{ ( $category->id == Session::get('states_id')) ? 'selected' : '' }}  value="{{ $category->id }}">{{ $category->state_name }}</option>
                     @endforeach
                 </select>
                 @error('categories')
@@ -47,7 +47,7 @@
                     id="select_city_id" name="city_state[]">
                     <option value="0">جميع المدن </option>
                     @foreach(DB::table('states')->orderBy('id', 'desc')->get() as $category)
-                    <option   {{ ( $category->id == Session::get('governorates_id')) ? 'selected' : '' }}  value="{{ $category->id }}">{{ $category->state_name }}</option>
+                    <option   {{ ( $category->id == Session::get('states_id')) ? 'selected' : '' }}  value="{{ $category->id }}">{{ $category->state_name }}</option>
                     @endforeach
                 </select>
                 @error('categories')

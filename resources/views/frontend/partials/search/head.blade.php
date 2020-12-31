@@ -47,7 +47,7 @@
                     id="select_city_id" name="city_state[]">
                     <option value="0">جميع المدن </option>
                     @foreach(DB::table('cities')->where('state_id',Session::get('states_id'))->orderBy('id', 'desc')->get() as $category)
-                    <option   {{ ( $category->id == Session::get('city_name')) ? 'selected' : '' }}  value="{{ $category->id }}">{{ $category->city_name }}</option>
+                    <option   {{ ( $category->id === Session::get('city_name')) ? 'selected' : '' }}  value="{{ $category->id }}">{{ $category->city_name }}</option>
                     @endforeach
                 </select>
                 @error('categories')

@@ -46,7 +46,7 @@
                 <select class="form-control osd rounded select @error('categories') is-invalid @enderror"
                     id="select_city_id" name="city_state[]">
                     <option value="0">جميع المدن </option>
-                    @foreach(DB::table('states')->orderBy('id', 'desc')->get() as $category)
+                    @foreach(DB::table('cities')->where('state_id',Session::get('states_id'))->orderBy('id', 'desc')->get() as $category)
                     <option   {{ ( $category->id == Session::get('states_id')) ? 'selected' : '' }}  value="{{ $category->id }}">{{ $category->state_name }}</option>
                     @endforeach
                 </select>

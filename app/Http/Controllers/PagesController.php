@@ -332,7 +332,12 @@ class PagesController extends Controller
     public function doSearch(Request $request)
     {
         #############################################
-        $countries = DB::table('countries')->where('id', $request->city_state[0])->get();
+      //  $countries = DB::table('countries')->where('id', $request->city_state[0])->get();
+      
+
+         $governorate_name =   Session::set('governorates', DB::table('governorates')->where('id', $request->city_state[0])->value('governorate_name'));
+
+         dd($governorate_name);
       //  $name_countries= $countries->name;
       ///  dd($countries);
         #############################################

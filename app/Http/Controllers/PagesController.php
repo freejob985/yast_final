@@ -341,6 +341,8 @@ class PagesController extends Controller
          $city_name =   Session::put('city_name', DB::table('cities')->where('id', $request->city_state[1])->value('id'));
 
 
+         dd(Session::get('city_name') );
+
       //  $name_countries= $countries->name;
       ///  dd($countries);
         #############################################

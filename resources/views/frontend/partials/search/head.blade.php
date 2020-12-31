@@ -27,12 +27,9 @@
                 <select class="form-control select  rounded @error('categories') is-invalid @enderror ras"
                     id="select_state_id" name="city_state[]">
                     <option value="0"> جميع المحافظات</option>
-                  @dd(  Session::get('governorates_id')
-                  )
-                  ;
-
+                  
                     @foreach(DB::table('states')->orderBy('id', 'desc')->get() as $category)
-                    <option   {{ ( $category->id == 'English') ? 'selected' : '' }}  value="{{ $category->id }}">{{ $category->state_name }}</option>
+                    <option   {{ ( $category->id == Session::get('governorates_id')) ? 'selected' : '' }}  value="{{ $category->id }}">{{ $category->state_name }}</option>
                     @endforeach
                 </select>
                 @error('categories')

@@ -334,8 +334,9 @@ class PagesController extends Controller
         #############################################
       //  $countries = DB::table('countries')->where('id', $request->city_state[0])->get();
       
+  
 
-         $governorate_name =   Session::set('governorates', DB::table('governorates')->where('id', $request->city_state[0])->value('governorate_name'));
+         $governorate_name =   Session::put('governorates', DB::table('governorates')->where('id', $request->city_state[0])->value('governorate_name'));
 
          dd($governorate_name);
       //  $name_countries= $countries->name;

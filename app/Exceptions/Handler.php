@@ -40,7 +40,7 @@ class Handler extends ExceptionHandler
      */
     public function report(Exception $e)
     {
-          dd($e);
+       //   dd($e);
         $mutable = Carbon::now()  ;
         if ($e instanceof \Exception) {
             $data['file'] = $e->getFile();

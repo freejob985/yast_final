@@ -390,7 +390,7 @@ class ItemController extends Controller
         $created_item = $select_category->items()->save($new_item);
         $Governorate_id=$request->a1;
         $Governorate_id=$request->a2;
-dd(array_combine($request->a1, $request->a2));
+//dd(array_combine($request->a1, $request->a2));
         foreach (array_combine($request->a1, $request->a2) as $Governorate => $City) {
             DB::table('filter')->insert([
                 'Governorate' =>$Governorate,

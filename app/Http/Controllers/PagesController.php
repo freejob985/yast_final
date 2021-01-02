@@ -397,7 +397,6 @@ class PagesController extends Controller
 
                 $items = Item::search($query, null, true)
                     ->where('category_id', $category)
-                    ->where('all_st', 0)
                     ->whereIn('id', $filter)
                     ->paginate(10);
                 // dd($items);
@@ -405,7 +404,6 @@ class PagesController extends Controller
                 // dd($request->all());
                 $items = Item::search($query, null, true)
                     ->where('category_id', $category)
-                    ->where('all_st', 0)
                     ->paginate(10);
                 //      dd($items);
             } else if ($request->city_state[0] != 0 and $request->city_state[1] != 0 and $category == 0) {
@@ -416,7 +414,6 @@ class PagesController extends Controller
             } else if ($request->city_state[0] != 0 and $request->city_state[1] == 0 and $category == 0) {
                 //  dd($request->all());
                 $items = Item::search($query, null, true)
-                    ->where('all_st', 0)
                     ->whereIn('id', $filter)
                     ->paginate(10);
             } else if ($category == 0) {

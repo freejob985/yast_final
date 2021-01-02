@@ -91,7 +91,13 @@ function generateRandomString($length = 10) {
                     <div class="col-12"><span class="text-gray-800">{{ $plan->plan_name }}</span></div>
                 </div>
                 <div class="row mb-3">
+                    @if ($plan->plan_price === "0.00")
+                    <div class="col-12"><span class="text-gray-800 text-lg"><span class="label label-success">مجانا</span></div>
+
+                    @else
                     <div class="col-12"><span class="text-gray-800 text-lg">{{ $plan->plan_price }}</span></div>
+
+                    @endif
                 </div>
                 <div class="row mb-3">
                     <div class="col-12">

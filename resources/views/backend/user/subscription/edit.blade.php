@@ -45,6 +45,14 @@ function generateRandomString($length = 10) {
         font-size: x-large;
         font-weight: 900;
     }
+    span.label.label-success {
+        background: #476cd9;
+        color: white;
+        padding: 3%;
+        border-radius: 6%;
+        border: 8px solid;
+        box-shadow: 0px 6px #d2d2d2;
+    }
 </style>
 @endsection
 

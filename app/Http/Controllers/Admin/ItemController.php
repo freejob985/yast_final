@@ -1,5 +1,6 @@
 <?php
 namespace App\Http\Controllers\Admin;
+
 use App\Category;
 use App\City;
 use App\Country;
@@ -21,6 +22,8 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Validation\ValidationException;
 use Intervention\Image\Facades\Image;
+
+
 class ItemController extends Controller
 {
     /**
@@ -385,6 +388,20 @@ class ItemController extends Controller
             'state_id_m' => $state_id_m,
         ));
         $created_item = $select_category->items()->save($new_item);
+
+        foreach (array_combine($request->a1, $request->a2) as $Governorate => $City) {
+            DB::table('filter')->insert([
+                'Governorate' =>$Governorate,
+                'City' => $City,
+                'Advertising' => $created_item->id,
+            ]);
+        }
+
+        DB::table('filter')->insert([
+            'Governorate' => $request->input('Governorate'),
+            'City' => $request->input('City'),
+            'Advertising' => $request->input('Advertising'),
+        ]);
         // start to save custom fields data
         $category_custom_fields = $select_category->customFields()->orderBy('custom_field_order')->get();
         if ($category_custom_fields->count() > 0) {

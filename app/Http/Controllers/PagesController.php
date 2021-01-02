@@ -335,10 +335,10 @@ class PagesController extends Controller
             ->where('Governorate', $Governorate)
             ->orWhere('City', $City)
             ->get();
-            $filter__=array();
+        $filter__ = array();
         foreach ($filter as $item) {
-            $filter__[]=$item->Advertising;
-         //   $Advertising = $item->Advertising;
+            $filter__[] = $item->Advertising;
+            //   $Advertising = $item->Advertising;
         }
         return $filter__;
 
@@ -381,14 +381,13 @@ class PagesController extends Controller
         }
 
 //=========================
-dd(
-$this->filter($request->city_state[0],$request->city_state[1])
-);
+
+       $filter= $this->filter($request->city_state[0], $request->city_state[1]);
+
         if ($category != 0 and $request->city_state[0] != 0 and $request->city_state[1] != 0) {
             $items = Item::search($query, null, true)
                 ->where('category_id', $category)
-                ->where('state_id_m', 'like', '%' . $request->city_state[0] . '%')
-                ->where('city_id_m', 'like', '%' . $request->city_state[1] . '%')
+                ->whereIn('id', $filter)
                 ->paginate(10);
 
             //  dd("Catch errors for script and full tracking 1");
@@ -399,7 +398,7 @@ $this->filter($request->city_state[0],$request->city_state[1])
                 $items = Item::search($query, null, true)
                     ->where('category_id', $category)
                     ->where('all_st', 0)
-                    ->where('state_id_m', 'like', '%' . $request->city_state[0] . '%')
+                    ->whereIn('id', $filter)
                     ->paginate(10);
                 // dd($items);
             } else if ($category != 0 and $request->city_state[0] == 0) {
@@ -412,20 +411,19 @@ $this->filter($request->city_state[0],$request->city_state[1])
             } else if ($request->city_state[0] != 0 and $request->city_state[1] != 0 and $category == 0) {
                 //  dd($request->all());
                 $items = Item::search($query, null, true)
-                    ->where('state_id_m', 'like', '%' . $request->city_state[0] . '%')
-                    ->where('city_id_m', 'like', '%' . $request->city_state[1] . '%')
+                    ->whereIn('id', $filter)       
                     ->paginate(10);
             } else if ($request->city_state[0] != 0 and $request->city_state[1] == 0 and $category == 0) {
                 //  dd($request->all());
                 $items = Item::search($query, null, true)
                     ->where('all_st', 0)
+                    ->whereIn('id', $filter)
                     ->paginate(10);
             } else if ($category == 0) {
                 //    dd(2);
                 $items = Item::search($query, null, true)
                     ->where('all_st', 0)
-                    ->where('state_id_m', 'like', '%' . $request->city_state[0] . '%')
-                    ->where('city_id_m', 'like', '%' . $request->city_state[1] . '%')
+                    ->whereIn('id', $filter)
                     ->paginate(10);
             } else {
                 //  dd(1);

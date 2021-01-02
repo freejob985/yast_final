@@ -57,9 +57,13 @@ function generateRandomString($length = 10) {
         <p class="mb-4"> {{$date_def}}</p>
 
     </div>
-    <div class="col-3 text-right"  >
-        <a href="#" class="btn btn-info" role="button">Link Button</a>
 
+    <div class="col-3 text-right">
+        @if (Auth::user()->Type == 1 or Auth::user()->Type == 2)
+        <a href="https://yasta.net/user/items/create" class="btn btn-info" role="button">اضافة خدمة</a>
+        @else
+        <a href="https://yasta.net/user/items/create?category=7" class="btn btn-info" role="button">طلب مقايسة </a>
+        @endif
     </div>
 </div>
 
@@ -130,8 +134,8 @@ function generateRandomString($length = 10) {
                                     name="Notes">Notes</textarea>
                             </div>
                             {{-- @dd(gettype($plan->plan_price)); --}}
-                             @if ($plan->plan_price === "0.00")     
-                             @else
+                            @if ($plan->plan_price === "0.00")
+                            @else
                             <label class="radio-inline">
                                 <img src="https://www.flaticon.com/svg/static/icons/svg/2398/2398987.svg">
                                 <input type="radio" name="Type" value="Bank transfer" attr=".url{{$plan->id}}">Bank

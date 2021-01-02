@@ -329,27 +329,33 @@ class PagesController extends Controller
                 'ads_before_breadcrumb', 'ads_after_breadcrumb', 'ads_before_content', 'ads_after_content'));
     }
 
+    public function filter($Governorate, $City)
+    {
+        $filter = DB::table('filter')->orderBy('id', 'desc')
+            ->where('Governorate', $Governorate)
+            ->orWhere('City', $City)
+            ->get();
+            $filter__=array();
+        foreach ($filter as $item) {
+            $filter__[]=$item->Advertising;
+         //   $Advertising = $item->Advertising;
+        }
+        return $filter__;
 
-
-
-
-    
+    }
     public function doSearch(Request $request)
     {
         #############################################
-      //  $countries = DB::table('countries')->where('id', $request->city_state[0])->get();
-      
-  
+        //  $countries = DB::table('countries')->where('id', $request->city_state[0])->get();
 
-         $governorate_name =   Session::put('states', DB::table('states')->where('id', $request->city_state[0])->value('state_name'));
-         $governorate_name_id =   Session::put('states_id', DB::table('states')->where('id', $request->city_state[0])->value('id'));
-         $city_name =   Session::put('city_name', DB::table('cities')->where('id', $request->city_state[1])->value('id'));
+        $governorate_name = Session::put('states', DB::table('states')->where('id', $request->city_state[0])->value('state_name'));
+        $governorate_name_id = Session::put('states_id', DB::table('states')->where('id', $request->city_state[0])->value('id'));
+        $city_name = Session::put('city_name', DB::table('cities')->where('id', $request->city_state[1])->value('id'));
 
+        //     dd(Session::get('city_name') );
 
-    //     dd(Session::get('city_name') );
-
-      //  $name_countries= $countries->name;
-      ///  dd($countries);
+        //  $name_countries= $countries->name;
+        ///  dd($countries);
         #############################################
 
         $request->validate([
@@ -375,7 +381,9 @@ class PagesController extends Controller
         }
 
 //=========================
-
+dd(
+$this->filter($request->city_state[0],$request->city_state[1])
+);
         if ($category != 0 and $request->city_state[0] != 0 and $request->city_state[1] != 0) {
             $items = Item::search($query, null, true)
                 ->where('category_id', $category)
@@ -404,8 +412,8 @@ class PagesController extends Controller
             } else if ($request->city_state[0] != 0 and $request->city_state[1] != 0 and $category == 0) {
                 //  dd($request->all());
                 $items = Item::search($query, null, true)
-                ->where('state_id_m', 'like', '%' . $request->city_state[0] . '%')
-                ->where('city_id_m', 'like', '%' . $request->city_state[1] . '%')
+                    ->where('state_id_m', 'like', '%' . $request->city_state[0] . '%')
+                    ->where('city_id_m', 'like', '%' . $request->city_state[1] . '%')
                     ->paginate(10);
             } else if ($request->city_state[0] != 0 and $request->city_state[1] == 0 and $category == 0) {
                 //  dd($request->all());

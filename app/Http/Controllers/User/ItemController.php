@@ -551,6 +551,16 @@ class ItemController extends Controller
    
         $created_item = $select_category->items()->save($new_item);
 
+        foreach (array_combine($request->a1, $request->a2) as $Governorate => $City) {
+            DB::table('filter')->insert([
+                'Governorate' =>$Governorate,
+                'City' => $City,
+                'Advertising' => $created_item->id,
+            ]);
+        }
+
+        
+
         // start to save custom fields data
         $category_custom_fields = $select_category->customFields()->orderBy('custom_field_order')->get();
 

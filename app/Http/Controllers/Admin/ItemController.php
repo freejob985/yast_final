@@ -399,11 +399,7 @@ class ItemController extends Controller
             ]);
         }
 
-        DB::table('filter')->insert([
-            'Governorate' => $request->input('Governorate'),
-            'City' => $request->input('City'),
-            'Advertising' => $request->input('Advertising'),
-        ]);
+
         // start to save custom fields data
         $category_custom_fields = $select_category->customFields()->orderBy('custom_field_order')->get();
         if ($category_custom_fields->count() > 0) {

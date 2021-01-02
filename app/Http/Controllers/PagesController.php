@@ -329,6 +329,11 @@ class PagesController extends Controller
                 'ads_before_breadcrumb', 'ads_after_breadcrumb', 'ads_before_content', 'ads_after_content'));
     }
 
+
+
+
+
+    
     public function doSearch(Request $request)
     {
         #############################################

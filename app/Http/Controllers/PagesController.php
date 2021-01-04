@@ -332,7 +332,7 @@ class PagesController extends Controller
     public function filter($Governorate, $City)
     {
         $filter = DB::table('filter')->orderBy('id', 'desc')
-            ->where('Governorate', $Governorate)
+            ->orWhere('Governorate', $Governorate)
             ->orWhere('City', $City)
             ->get();
         $filter__ = array();

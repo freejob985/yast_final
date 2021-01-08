@@ -59,7 +59,7 @@ return array (
     'sub-title-1' => 'نتائج البحث',
     'all-categories' => 'جميع الفئات',
     'title-search' => 'بحث',
-      'what-are-you-looking-for' => 'عما تبحث؟',
+      'what-are-you-looking-for' => 'منطقة العمل',
       'state-or-city' => 'الولاية أو المدينة',
       'search' => 'بحث',
   ),

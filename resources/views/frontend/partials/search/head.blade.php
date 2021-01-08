@@ -74,7 +74,7 @@
         </div>
 
 
-        <div class="col-lg-12 col-xl-2 ml-auto text-right">
+        <div class="col-lg-12 col-xl-6 ml-auto text-right">
             <input type="submit" class="btn btn-primary btn-block rounded text-white"
                 value="{{ __('frontend.search.search') }}">
         </div>

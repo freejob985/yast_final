@@ -61,7 +61,7 @@
 
 
         </div>
-        <div class="col-lg-12 mb-8 mb-xl-0 col-xl-3">
+        <div class="col-lg-12 mb-8 mb-xl-0 col-xl-5">
             <input name="search_query" type="text"
                 class="form-control rounded @error('search_query') is-invalid @enderror"
                 value="{{ old('search_query') ? old('search_query') : (isset($last_search_query) ? $last_search_query : '') }}"

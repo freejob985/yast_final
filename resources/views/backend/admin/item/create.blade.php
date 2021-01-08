@@ -650,8 +650,7 @@
                     </div>
                     <hr>
 
-                    <a class="btn btn-success add" style="color: white;"><i class="fas fa-plus-square"></i> اضافة مدن
-                        ومحافظات عمل</a>
+                    <a class="btn btn-success add" style="color: white;"><i class="fas fa-plus-square"></i> اضافة محافظات العمل</a>
 
                     <!-- End custom field section -->
 

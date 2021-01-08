@@ -1073,7 +1073,9 @@
                 @endif
                 <h4 class="h5 mb-4 mt-4 text-black">{{ __('frontend.item.features') }}</h4>
                 @foreach($item->features as $key => $feature)
-                <div class="row pt-2 pb-2 {{ $key%2 == 0 ? 'bg-light' : '' }}">
+                <div class="row pt-2 pb-2 {{ $key%2 == 0 ? 'bg-light' : '' }}" style="
+                display: none;
+            ">
                     <div class="col-3">
                         {{ $feature->customField->custom_field_name }}
                     </div>

@@ -457,7 +457,6 @@
 
                     </div>
                     <hr>
-
                     <a class="btn btn-success add" style="color: white;"><i class="fas fa-plus-square"></i> اضافة محافظات العمل</a>
                     <div class="form-row mb-3">
                         <div class="col-md-6">

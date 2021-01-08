@@ -1528,7 +1528,7 @@
             "        <strong>{{ $message }}</strong>\n" +
             "    </span>\n" +
             "    @enderror\n" +
-            "</div>\n"");
+            "</div>\n");
             return false;
      });
 

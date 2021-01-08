@@ -212,7 +212,7 @@ return array (
     'select-city' => 'اختر مدينة',
     'id' => 'هوية شخصية',
     'title' => 'اسم مقدم الخدمة',
-    'address' => 'منطقة العمل',
+    'address' => 'عنوانك الحالي',
     'status' => 'الحالة',
     'featured' => 'متميز',
     'submitted' => 'قدمت',

@@ -21,7 +21,7 @@
 
 
         </div>
-        <div class="col-lg-12 mb-4 mb-xl-0 col-xl-2">
+        <div class="col-lg-12 mb-8 mb-xl-0 col-xl-2">
             <div class="select-wrap">
                 <span class="icon"><span class="icon-keyboard_arrow_down"></span></span>
                 <select class="form-control select  rounded @error('categories') is-invalid @enderror ras"
@@ -40,7 +40,9 @@
 
 
         </div>
-        <div class="col-lg-12 mb-4 mb-xl-0 col-xl-2">
+        <div class="col-lg-12 mb-4 mb-xl-0 col-xl-2" style="
+        display: none;
+    ">
             <div class="select-wrap">
                 <span class="icon"><span class="icon-keyboard_arrow_down"></span></span>
                 <select class="form-control osd rounded select @error('categories') is-invalid @enderror"

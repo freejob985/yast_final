@@ -61,7 +61,7 @@
 
 
         </div>
-        <div class="col-lg-12 mb-4 mb-xl-0 col-xl-3">
+        <div class="col-lg-12 mb-5 mb-xl-0 col-xl-3">
             <input name="search_query" type="text"
                 class="form-control rounded @error('search_query') is-invalid @enderror"
                 value="{{ old('search_query') ? old('search_query') : (isset($last_search_query) ? $last_search_query : '') }}"
@@ -74,7 +74,7 @@
         </div>
 
 
-        <div class="col-lg-12 col-xl-4 ml-auto text-right">
+        <div class="col-lg-12 col-xl-2 ml-auto text-right">
             <input type="submit" class="btn btn-primary btn-block rounded text-white"
                 value="{{ __('frontend.search.search') }}">
         </div>

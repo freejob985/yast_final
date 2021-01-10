@@ -329,7 +329,7 @@ class ItemController extends Controller
      */
     public function store(Request $request)
     {
-   dd($request->all());      
+      
         /**
          * Check paid subscription quota
          */
@@ -349,7 +349,7 @@ class ItemController extends Controller
         /**
          * End check paid subscription quota
          */
-
+  
         // prepare rule for general information
         $validate_rule = [
             'category' => 'required|numeric',
@@ -406,15 +406,16 @@ class ItemController extends Controller
         $request->validate($validate_rule);
 
         // validate state_id
-        $select_state = State::find($request->state_id[0]);
-        if (!$select_state) {
-            throw ValidationException::withMessages(
-                [
-                    'state_id' => 'State not found',
-                ]);
-        }
+   //     $select_state = State::find($request->state_id[0]);
+     //   if (!$select_state) {
+       //     throw ValidationException::withMessages(
+         //       [
+                 //   'state_id' => 'State not found',
+           //     ]);
+        //}
         // validate city_id
         $select_city = City::find(0);
+      //   dd($select_city);
         // if (!$select_city) {
         //     throw ValidationException::withMessages(
         //         [
@@ -444,8 +445,7 @@ class ItemController extends Controller
         $item_address = $request->item_address;
         $item_address_hide = $request->item_address_hide == 1 ? 1 : 0;
         $item_phone_hide = $request->item_phone_hide == 1 ? 1 : 0;
-        $city_id = $select_city->id;
-        $state_id = $select_state->id;
+
     //    dd($city_id. $state_id);
 
         //$default_country = Country::where('country_abbr', 'US')->first();
@@ -531,8 +531,8 @@ class ItemController extends Controller
             'item_address' => $item_address,
             'item_address_hide' => $item_address_hide,
              'item_phone_hide' => $item_phone_hide,
-            'city_id' => $city_id,
-            'state_id' => $state_id,
+            'city_id' => $city_id_m,
+            'state_id' => $state_id_m,
             'country_id' => $default_country->id,
             'item_postal_code' => ".",
             'item_lat' => $item_lat,

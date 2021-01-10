@@ -329,11 +329,10 @@ class PagesController extends Controller
                 'ads_before_breadcrumb', 'ads_after_breadcrumb', 'ads_before_content', 'ads_after_content'));
     }
 
-    public function filter($Governorate, $City)
+    public function filter($Governorate, $City="0")
     {
         $filter = DB::table('filter')->orderBy('id', 'desc')
             ->orWhere('Governorate', $Governorate)
-            ->orWhere('City', $City)
             ->get();
         $filter__ = array();
         foreach ($filter as $item) {
@@ -382,7 +381,7 @@ class PagesController extends Controller
 
 //=========================
 
-       $filter= $this->filter($request->city_state[0], $request->city_state[1]);
+       $filter= $this->filter($request->city_state[0]);
 
         if ($category != 0 and $request->city_state[0] != 0 and $request->city_state[1] != 0) {
             $items = Item::search($query, null, true)

@@ -356,7 +356,6 @@ class ItemController extends Controller
 //            'item_status' => 'required|numeric',
             'item_featured' => 'required|numeric',
             'item_title' => 'required|max:255',
-            'city_id' => 'required',
             'state_id' => 'required',
             'item_phone' => 'nullable|max:255',
             'item_website' => 'nullable|url|max:255',
@@ -415,13 +414,13 @@ class ItemController extends Controller
                 ]);
         }
         // validate city_id
-        $select_city = City::find($request->city_id[0]);
-        if (!$select_city) {
-            throw ValidationException::withMessages(
-                [
-                    'city_id' => 'City not found',
-                ]);
-        }
+        $select_city = City::find(0);
+        // if (!$select_city) {
+        //     throw ValidationException::withMessages(
+        //         [
+        //             'city_id' => 'City not found',
+        //         ]);
+        // }
 
         // prepare new item data
         $login_user = Auth::user();
@@ -434,7 +433,7 @@ class ItemController extends Controller
         //dd($request->city_id);
         $arr = array('Hello','World!','Beautiful','Day!');
 
-        $city_id_m =implode(",",$request->a2)  ;
+        $city_id_m = implode(",", [0]);
          $state_id_m = implode(",",$request->a1) ;
          $item_featured = $request->item_featured == 1 ? 1 : 0;
         $item_title = ucfirst(strtolower($request->item_title));
@@ -550,11 +549,12 @@ class ItemController extends Controller
         
    
         $created_item = $select_category->items()->save($new_item);
-
-        foreach (array_combine($request->a1, $request->a2) as $Governorate => $City) {
+    
+    
+        foreach ($request->a1 as $Governorate => $City) {
             DB::table('filter')->insert([
-                'Governorate' =>$Governorate,
-                'City' => $City,
+                'Governorate' =>$City,
+                'City' => "0",
                 'Advertising' => $created_item->id,
             ]);
         }

@@ -301,8 +301,8 @@ class ItemController extends Controller
         $item_lng = $request->item_lng;
         // guess lat and lng if empty
         if (empty($item_lat) || empty($item_lng)) {
-            $item_lat = [0];
-            $item_lng = [0];
+            $item_lat = 0;
+            $item_lng = 0;
         }
         $item_phone = empty($request->item_phone) ? null : $request->item_phone;
         $item_website = $request->item_website;

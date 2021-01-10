@@ -391,10 +391,10 @@ class ItemController extends Controller
         $Governorate_id=$request->a1;
         $Governorate_id=$request->a2;
 //dd(array_combine($request->a1, $request->a2));
-        foreach (array_combine($request->a1, [0]) as $Governorate => $City) {
+        foreach ($request->a1 as $Governorate => $City) {
             DB::table('filter')->insert([
                 'Governorate' =>$Governorate,
-                'City' => $City,
+                'City' => "0",
                 'Advertising' => $created_item->id,
             ]);
         }

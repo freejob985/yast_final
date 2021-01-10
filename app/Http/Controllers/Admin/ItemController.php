@@ -226,7 +226,6 @@ class ItemController extends Controller
             'item_featured' => 'required|numeric',
             'item_title' => 'required|max:255',
             'a1' => 'required',
-            'a2' => 'required',
             'item_phone' => 'nullable|max:255',
             'item_website' => 'nullable|url|max:255',
             'item_social_facebook' => 'nullable|url|max:255',
@@ -275,13 +274,7 @@ class ItemController extends Controller
                 ]);
         }
         // validate city_id
-        $select_city = City::find($request->a2[0]);
-        if (!$select_city) {
-            throw ValidationException::withMessages(
-                [
-                    'a2' => 'City not found',
-                ]);
-        }
+
         $user_id = Auth::user()->id;
         //$user_id = 1;
         $category_id = $select_category->id;
@@ -389,7 +382,7 @@ class ItemController extends Controller
         ));
         $created_item = $select_category->items()->save($new_item);
         $Governorate_id=$request->a1;
-        $Governorate_id=$request->a2;
+        $Governorate_id=[0];
 //dd(array_combine($request->a1, $request->a2));
         foreach (array_combine($request->a1, $request->a2) as $Governorate => $City) {
             DB::table('filter')->insert([

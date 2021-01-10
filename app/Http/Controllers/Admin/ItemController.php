@@ -275,13 +275,13 @@ class ItemController extends Controller
                 ]);
         }
         // validate city_id
-        $select_city = City::find($request->a2[0]);
-        if (!$select_city) {
-            throw ValidationException::withMessages(
-                [
-                    'a2' => 'City not found',
-                ]);
-        }
+        $select_city = City::find(0);
+        // if (!$select_city) {
+        //     throw ValidationException::withMessages(
+        //         [
+        //             'a2' => 'City not found',
+        //         ]);
+        // }
         $user_id = Auth::user()->id;
         //$user_id = 1;
         $category_id = $select_category->id;

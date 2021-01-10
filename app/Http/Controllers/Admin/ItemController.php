@@ -291,7 +291,7 @@ class ItemController extends Controller
         $city_id_m = implode(",", [0]);
         $state_id_m = implode(",", $request->a1);
         // dd($item_phone_hide);
-        $city_id = $select_city->id;
+        $city_id = 0;
         $state_id = $select_state->id;
         //$default_country = Country::where('country_abbr', 'US')->first();
         $default_country = Country::find(Setting::find(1)->setting_site_location_country_id);

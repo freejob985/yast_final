@@ -226,6 +226,7 @@ class ItemController extends Controller
             'item_featured' => 'required|numeric',
             'item_title' => 'required|max:255',
             'a1' => 'required',
+   
             'item_phone' => 'nullable|max:255',
             'item_website' => 'nullable|url|max:255',
             'item_social_facebook' => 'nullable|url|max:255',
@@ -274,7 +275,13 @@ class ItemController extends Controller
                 ]);
         }
         // validate city_id
-
+        $select_city = City::find($request->a2[0]);
+        if (!$select_city) {
+            throw ValidationException::withMessages(
+                [
+                    'a2' => 'City not found',
+                ]);
+        }
         $user_id = Auth::user()->id;
         //$user_id = 1;
         $category_id = $select_category->id;
@@ -288,10 +295,10 @@ class ItemController extends Controller
         $item_address = $request->item_address;
         $item_address_hide = $request->item_address_hide == 1 ? 1 : 0;
         $item_phone_hide = $request->item_phone_hide == 1 ? 1 : 0;
-        $city_id_m = implode(",", [0]);
+        $city_id_m = implode(",", $request->a2);
         $state_id_m = implode(",", $request->a1);
         // dd($item_phone_hide);
-        $city_id = 0;
+        $city_id = $select_city->id;
         $state_id = $select_state->id;
         //$default_country = Country::where('country_abbr', 'US')->first();
         $default_country = Country::find(Setting::find(1)->setting_site_location_country_id);
@@ -301,8 +308,8 @@ class ItemController extends Controller
         $item_lng = $request->item_lng;
         // guess lat and lng if empty
         if (empty($item_lat) || empty($item_lng)) {
-            $item_lat = 0;
-            $item_lng = 0;
+            $item_lat = $select_city->city_lat;
+            $item_lng = $select_city->city_lng;
         }
         $item_phone = empty($request->item_phone) ? null : $request->item_phone;
         $item_website = $request->item_website;
@@ -365,7 +372,7 @@ class ItemController extends Controller
             'item_address' => $item_address,
             'item_address_hide' => $item_address_hide,
             'item_phone_hide' => $item_phone_hide,
-            'city_id' => [0],
+            'city_id' => $city_id_m,
             'state_id' => $state_id_m,
             'country_id' => $default_country->id,
             'item_postal_code' => ".",
@@ -377,12 +384,12 @@ class ItemController extends Controller
             'item_social_twitter' => $item_social_twitter,
             'item_social_linkedin' => $item_social_linkedin,
             'file' => $filename,
-            'city_id_m' => [0],
+            'city_id_m' => $city_id_m,
             'state_id_m' => $state_id_m,
         ));
         $created_item = $select_category->items()->save($new_item);
         $Governorate_id=$request->a1;
-        $Governorate_id=[0];
+        $Governorate_id=$request->a2;
 //dd(array_combine($request->a1, $request->a2));
         foreach (array_combine($request->a1, $request->a2) as $Governorate => $City) {
             DB::table('filter')->insert([

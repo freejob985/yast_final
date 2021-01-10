@@ -295,7 +295,7 @@ class ItemController extends Controller
         $item_address = $request->item_address;
         $item_address_hide = $request->item_address_hide == 1 ? 1 : 0;
         $item_phone_hide = $request->item_phone_hide == 1 ? 1 : 0;
-        $city_id_m = implode(",", $request->a2);
+        $city_id_m = implode(",", [0]);
         $state_id_m = implode(",", $request->a1);
         // dd($item_phone_hide);
         $city_id = $select_city->id;

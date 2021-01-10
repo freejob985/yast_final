@@ -288,7 +288,7 @@ class ItemController extends Controller
         $item_address = $request->item_address;
         $item_address_hide = $request->item_address_hide == 1 ? 1 : 0;
         $item_phone_hide = $request->item_phone_hide == 1 ? 1 : 0;
-        $city_id_m = implode(",", $request->a2);
+        $city_id_m = implode(",", [0]);
         $state_id_m = implode(",", $request->a1);
         // dd($item_phone_hide);
         $city_id = $select_city->id;
@@ -365,7 +365,7 @@ class ItemController extends Controller
             'item_address' => $item_address,
             'item_address_hide' => $item_address_hide,
             'item_phone_hide' => $item_phone_hide,
-            'city_id' => $city_id_m,
+            'city_id' => [0],
             'state_id' => $state_id_m,
             'country_id' => $default_country->id,
             'item_postal_code' => ".",
@@ -377,7 +377,7 @@ class ItemController extends Controller
             'item_social_twitter' => $item_social_twitter,
             'item_social_linkedin' => $item_social_linkedin,
             'file' => $filename,
-            'city_id_m' => $city_id_m,
+            'city_id_m' => [0],
             'state_id_m' => $state_id_m,
         ));
         $created_item = $select_category->items()->save($new_item);
